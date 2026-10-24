@@ -14,7 +14,7 @@
   margin: 0 var(--wave-padding);
   padding-top: 14px;
   border-top: 1px solid currentColor;
-  font: 500 10px/1.4 var(--font-mono);
+  font: 500 14px/1.4 var(--font-mono);
   letter-spacing: .12em;
   text-transform: uppercase;
 }
@@ -60,7 +60,7 @@
 }
 @media (max-width: 600px) {
   .section { --wave-amplitude: 46px; }
-  .top { font-size: 8px; }
+  .top { font-size: 14px; }
   .section .heading { font-size: clamp(52px, 14vw, 78px); }
   .viewport { margin-top: 25px; padding-block: calc(var(--wave-amplitude) + 22px); }
   .group { gap: 14px; padding-right: 14px; }

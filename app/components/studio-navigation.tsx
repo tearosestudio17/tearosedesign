@@ -14,7 +14,6 @@ import {
   type ReactNode,
 } from "react";
 import { Dialog } from "@base-ui/react/dialog";
-import { ArrowUpRight, Menu, X } from "lucide-react";
 import { Magnetic, ReadingProgress } from "./studio-motion";
 import teaLogo from "@/public/logoTea.webp";
 
@@ -273,7 +272,7 @@ export function StudioNavigation() {
         <div className="st-nav-actions">
           <Magnetic>
             <StudioLink className="st-button st-button-pink" href="/#contact">
-              Let’s talk <ArrowUpRight size={16} />
+              Let’s talk
             </StudioLink>
           </Magnetic>
           <Dialog.Root open={open} onOpenChange={setOpen}>
@@ -281,7 +280,7 @@ export function StudioNavigation() {
               className="st-menu-toggle"
               aria-label="Open navigation"
             >
-              <Menu size={22} />
+              Menu
             </Dialog.Trigger>
             <Dialog.Portal>
               <Dialog.Backdrop className="st-menu-backdrop" />
@@ -293,7 +292,7 @@ export function StudioNavigation() {
                   aria-label="Close navigation"
                   className="st-menu-close"
                 >
-                  <X size={26} />
+                  Close
                 </Dialog.Close>
                 <span className="st-label">Pull up a chair.</span>
                 <nav aria-label="Mobile navigation">
@@ -305,7 +304,7 @@ export function StudioNavigation() {
                     >
                       <small>0{i + 1}</small>
                       {link.label}
-                      <ArrowUpRight />
+
                     </StudioLink>
                   ))}
                 </nav>
