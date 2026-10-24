@@ -1,7 +1,6 @@
 "use client";
 
 import Image from "next/image";
-import { ArrowUpRight } from "lucide-react";
 import { useEffect, useRef, type CSSProperties } from "react";
 import { brandMarks } from "@/lib/brand-marks";
 import { SplitHeading } from "./studio-motion";
@@ -58,7 +57,7 @@ export function LogoWave() {
       <div id="brand-wave-title"><SplitHeading text={"Different brands.\nA thoughtful blend."} className={styles.title} accent="blend." /></div>
       <div className={styles.copy}>
         <p>One team for strategy, design, marketing, branding and launches. No scattered vendors and no mixed messages.</p>
-        <StudioLink href="/services#branding" className="st-text-link">Explore brand identity <ArrowUpRight size={18} aria-hidden="true" /></StudioLink>
+        <StudioLink href="/services#branding" className="st-text-link">Explore brand identity </StudioLink>
         <span className="st-label">Good conversations. Great brands.</span>
       </div>
     </div>

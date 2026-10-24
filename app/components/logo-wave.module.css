@@ -40,9 +40,9 @@
 .bottom { display: grid; grid-template-columns: 1.3fr 1fr; align-items: end; gap: 10%; }
 .title { font-size: clamp(40px, 5.8vw, 88px); font-weight: 400; line-height: 1.08; letter-spacing: -.065em; }
 .copy { max-width: 39ch; }
-.copy > p { font-size: clamp(14px, 1.35vw, 19px); line-height: 1.8; color: #ffe1ed; }
+.copy > p { font-size: clamp(18px, 1.4vw, 20px); line-height: 1.8; color: #ffe1ed; }
 .copy > a { margin-top: 24px; }
-.copy > span { display: block; margin-top: 32px; color: #f2c4d5; font-size: 8px; }
+.copy > span { display: block; margin-top: 32px; color: #f2c4d5; font-size: 14px; }
 
 @media (hover: hover) and (prefers-reduced-motion: no-preference) {
   .wave:hover .track, .wave:hover .mark { animation-play-state: paused; }
@@ -55,7 +55,7 @@
 
 @media (max-width: 600px) {
   .section { --wave-amplitude: 38px; padding-top: 40px; padding-bottom: 60px; }
-  .top > span { font-size: 8px; }
+  .top > span { font-size: 14px; }
   .top > span:last-child { max-width: 24ch; }
   .wave { margin-block: 20px 30px; padding-block: 70px; }
   .group { gap: 24px; padding-right: 24px; }
