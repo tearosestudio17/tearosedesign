@@ -9,6 +9,7 @@ import { useEffect, useRef, useState, useSyncExternalStore } from "react";
 import { industries, launchItems, reasons, services } from "@/lib/studio-content";
 import { FoldRow, Magnetic, Reveal, ScrubText, SplitHeading } from "./studio-motion";
 import { StudioLink } from "./studio-navigation";
+import serviceArtStyles from "./studio-service-art.module.css";
 
 const reducedMotionQuery = "(prefers-reduced-motion: reduce)";
 function subscribeToReducedMotion(onChange: () => void) {
@@ -32,12 +33,21 @@ export function StudioAboutIntro() {
   </section>;
 }
 
+const serviceArtwork = [
+  { color: "#fae8d0", caption: "Clear direction. Better decisions." },
+  { color: "#f5edbc", caption: "Ideas, beautifully brought to life." },
+  { color: "#deddf5", caption: "Turn attention into action." },
+  { color: "#f6dce6", caption: "A brand that feels like you." },
+];
+
 function ServiceCard({ service, index }: { service: typeof services[number]; index: number }) {
   const ref = useRef<HTMLElement>(null);
   const reduced = usePrefersReducedMotion();
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "start 15%"] });
-  const y = useTransform(scrollYProgress, [0, 1], [65, 0]);
-  const rotate = useTransform(scrollYProgress, [0, 1], [3, 0]);
+  const y = useTransform(scrollYProgress, [0, 1], [36, 0]);
+  const rotate = useTransform(scrollYProgress, [0, 1], [2, 0]);
+  const artScale = useTransform(scrollYProgress, [0, 1], [0.94, 1]);
+  const artwork = serviceArtwork[index];
   return <article id={service.name.toLowerCase()} className={`st-service-card st-service-${index}`} ref={ref} style={{ "--card-order": index } as React.CSSProperties}>
     <div className="st-service-copy">
       <span className="st-label">{service.number} / Our services</span>
@@ -46,13 +56,15 @@ function ServiceCard({ service, index }: { service: typeof services[number]; ind
       <SplitHeading as="h3" text={service.title} /><Reveal delay={0.18}><p className="st-service-description">{service.description}</p></Reveal>
       <ul>{service.items.map((item) => <li key={item}><span aria-hidden="true">↗</span>{item}</li>)}</ul>
     </div>
-    <motion.div className={`st-service-art st-art-${index}`} aria-hidden="true" style={reduced ? undefined : { y, rotate }}>
-      <span className="st-art-caption">TEA ROSE / {service.name.toUpperCase()}</span>
-      {index === 0 && <div className="st-orbit-art"><i /><i /><i /><span /></div>}
-      {index === 1 && <div className="st-design-art"><Flower2 strokeWidth={0.6} /><span /></div>}
-      {index === 2 && <div className="st-signal-art">{[0, 1, 2, 3, 4, 5, 6].map((n) => <i key={n} style={{ "--bar": n } as React.CSSProperties} />)}</div>}
-      {index === 3 && <div className="st-brand-art"><span>t</span><span>r<span className="st-art-dot">.</span></span></div>}
-      <span className="st-art-foot">Thoughtfully blended. / {service.number}</span>
+    <motion.div className={serviceArtStyles.art} aria-hidden="true" style={{
+      "--service-art-color": artwork.color,
+      ...(reduced ? {} : { y, rotate }),
+    } as React.CSSProperties & { y?: MotionValue<number>; rotate?: MotionValue<number> }}>
+      <div className={serviceArtStyles.header}><span>Tea Rose / The {service.name.toLowerCase()} blend</span><span className={serviceArtStyles.number}>{service.number}</span></div>
+      <motion.div className={serviceArtStyles.illustration} style={reduced ? undefined : { scale: artScale }}>
+        <Image src={`/services/${service.name.toLowerCase()}.webp`} alt="" fill sizes="(max-width: 760px) 85vw, 42vw" />
+      </motion.div>
+      <div className={serviceArtStyles.footer}><span>{artwork.caption}</span><ArrowUpRight /></div>
     </motion.div>
   </article>;
 }
