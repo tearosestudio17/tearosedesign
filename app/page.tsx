@@ -13,6 +13,7 @@ import { process } from "@/lib/studio-content";
 import { StudioLink } from "./components/studio-navigation";
 import { LogoWave } from "./components/logo-wave";
 import { AnimatedHeading, AnimatedReveal } from "./components/animated-heading";
+import { SelectedWork } from "./components/work-gallery";
 
 function ProcessPanel({ index }: { index: number }) {
   const step = process[index];
@@ -84,6 +85,7 @@ export default function Home() {
           <ProcessPanel key="launch" index={3} />,
         ]}
       />
+      <SelectedWork />
       <StudioServices />
       <StudioLaunch />
       <StudioIndustries />

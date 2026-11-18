@@ -7,5 +7,5 @@ export const metadata: Metadata = {
 };
 
 export default function ServicesPage() {
-  return <main className="st-site st-inner-page"><StudioServices standalone /><StudioLaunch number="02" /><StudioContact /></main>;
+  return <main className="st-site st-inner-page"><StudioServices standalone /><StudioLaunch /><StudioContact /></main>;
 }
