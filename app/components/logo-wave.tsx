@@ -37,7 +37,7 @@ export function LogoWave() {
     };
   }, []);
 
-  return <section ref={sectionRef} id="brand-worlds" className="group/sec relative overflow-clip bg-[radial-gradient(ellipse_at_15%_5%,#ff83b522,transparent_55%),radial-gradient(ellipse_at_95%_95%,#ff941f14,transparent_50%),#742347] px-[clamp(24px,5vw,80px)] pt-16 pb-[90px] text-foreground [--section-padding:clamp(24px,5vw,80px)] [--wave-amplitude:64px] max-[600px]:pt-10 max-[600px]:pb-[60px] max-[600px]:[--wave-amplitude:38px]" aria-labelledby="brand-wave-title">
+  return <section ref={sectionRef} id="brand-worlds" className="group/sec relative overflow-clip [background:radial-gradient(ellipse_at_15%_5%,#ff83b522,transparent_55%),radial-gradient(ellipse_at_95%_95%,#ff941f14,transparent_50%),#742347] px-[clamp(24px,5vw,80px)] pt-16 pb-[90px] text-foreground [--section-padding:clamp(24px,5vw,80px)] [--wave-amplitude:64px] max-[600px]:pt-10 max-[600px]:pb-[60px] max-[600px]:[--wave-amplitude:38px]" aria-labelledby="brand-wave-title">
     <div className="flex justify-between gap-6 border-b border-b-[#fff3f72b] pb-[22px] [&>span:last-child]:text-right [&>span:last-child]:text-[#f2c4d5] max-[600px]:[&>span]:text-sm max-[600px]:[&>span:last-child]:max-w-[24ch]">
       <span className="st-label">02 / Brand worlds</span>
       <span className="st-label">A selection from the studio / {String(brandMarks.length).padStart(2, "0")} identities</span>

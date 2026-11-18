@@ -391,9 +391,9 @@ body { overflow-x: clip; }
   .st-section-top .st-label { font-size: 14px; }
   .st-section-top > .st-label:last-child:not(:first-child) { max-width: 20ch; text-align: right; }
   .st-intro-bottom { flex-direction: column; align-items: flex-start; gap: 25px; margin-top: 40px; }
-  .st-service-stack { padding: 0; }
+  .st-service-stack { padding: 0 8px; }
   .st-services-heading { padding-bottom: 45px; }
-  .st-service-card { position: relative; top: auto; grid-template-columns: 1fr; padding: 35px 24px; border-radius: 0; gap: 30px; min-height: 0; box-shadow: none; }
+  .st-service-card { position: sticky; top: min(calc(88px + var(--card-order) * 8px), calc(100svh - var(--card-h, 0px) - 12px)); grid-template-columns: 1fr; padding: 35px 24px; border-radius: 20px 20px 0 0; gap: 30px; min-height: 0; }
   .st-service-name { font-size: 55px; }
   .st-service-art { min-height: 280px; max-height: 350px; }
   .st-orbit-art, .st-design-art { width: min(65%, 270px); }
@@ -471,4 +471,93 @@ body { overflow-x: clip; }
 .st-inner-page > :nth-child(n + 5) { --enter-index: 4; }
 @media (prefers-reduced-motion: reduce) {
   .st-inner-page > * { animation: none; }
+}
+
+/* Responsive polish */
+html { overflow-x: clip; -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+img, video, canvas, svg { max-width: 100%; }
+
+/* Respect phone notches and home indicators (viewport-fit=cover is set in the layout). */
+.st-nav {
+  padding-left: max(clamp(24px, 4vw, 64px), env(safe-area-inset-left));
+  padding-right: max(clamp(24px, 4vw, 64px), env(safe-area-inset-right));
+  padding-top: max(10px, env(safe-area-inset-top));
+}
+.st-menu-panel {
+  overflow-y: auto;
+  padding-top: max(10vw, calc(env(safe-area-inset-top) + 64px));
+  padding-bottom: max(10vw, calc(env(safe-area-inset-bottom) + 32px));
+}
+.st-menu-panel nav a { min-height: 44px; }
+.st-menu-close { top: max(25px, env(safe-area-inset-top)); }
+
+/* Keep section content readable on ultra-wide monitors: backgrounds stay full-bleed, content stops at 1680px. */
+.st-section {
+  padding-inline: max(clamp(24px, 5vw, 80px), calc((100% - 1680px) / 2));
+}
+
+/* Comfortable tap targets and no accidental zoom-on-focus on touch devices. */
+@media (pointer: coarse) {
+  .st-button, .st-text-link, .st-menu-toggle { min-height: 44px; }
+  input, textarea, select { font-size: 16px; }
+}
+
+/* Landscape phones: sections that assume a tall viewport must not clip. */
+@media (max-height: 520px) and (orientation: landscape) {
+  .st-menu-panel nav a { padding-block: 8px; font-size: clamp(24px, 5vw, 36px); }
+  .st-inner-page { padding-top: 72px; }
+}
+
+/* Phones: four wide strips with a gentle curve, lighter effects, and a title that fits the screen. */
+@media (max-width: 760px) {
+  .st-strips { grid-template-columns: repeat(4, 1fr); }
+  .st-strips i:nth-child(n + 5) { display: none; }
+  .st-strips i { border-radius: 50% 50% 0 0 / 5vh 5vh 0 0; box-shadow: none; }
+  .st-strips i:nth-child(2) { background: #c01a63; }
+  .st-strips i:nth-child(3) { background: #6d1038; }
+  .st-strips i:nth-child(4) { background: #21101c; }
+  .st-stage { gap: 16px; padding-inline: 24px; }
+  .st-stage img { width: 76px; height: 58px; }
+  .st-stage-label { font-size: clamp(38px, 12vw, 64px); text-wrap: balance; text-shadow: none; }
+  /* No blur on phones: animating filter on large sections drops frames. */
+  @keyframes page-rise {
+    from { opacity: 0; translate: 0 32px; }
+    to { opacity: 1; translate: 0 0; }
+  }
+  .st-inner-page > * { animation-duration: .7s; }
+}
+
+/* "How we work" on phones: the panel sits inside a pinned, scroll-driven viewport, so it must fit the screen. */
+@media (max-width: 760px) {
+  .st-story-process { padding-top: 84px; padding-bottom: 16px; padding-right: 52px; }
+  .st-process-panel { padding: 0; margin-block: auto; }
+  .st-process-heading { padding-bottom: 10px; }
+  .st-process-layout { gap: 10px; padding-block: 10px; }
+  .st-process-panel h2 { font-size: clamp(34px, 9.5vw, 46px); margin-top: 8px; }
+  .st-process-lead { font-size: 18px; line-height: 1.35; margin-top: 8px; max-width: 30ch; }
+  .st-process-note { font-size: 14px; line-height: 1.6; margin-top: 12px; padding-left: 14px; }
+  .st-process-topics { grid-template-columns: 1fr 1fr; gap: 8px 14px; margin-top: 14px; padding-top: 12px; }
+  .st-process-topics li { font-size: 14px; line-height: 1.45; gap: 6px; }
+  .st-process-topics li > span { font-size: 12px; }
+  .st-process-footer { flex-direction: row; align-items: center; justify-content: space-between; gap: 12px; margin-top: 14px; }
+  .st-process-footer > span { font-size: 12px; }
+  .st-process-scene-space { height: clamp(90px, 16dvh, 190px); }
+  .st-process-steps { margin-top: 6px; gap: 6px; }
+  .st-process-steps li { padding-top: 8px; font-size: 12px; gap: 2px; }
+  .st-process-steps li > span { font-size: 12px; }
+}
+/* Shorter phones: the decorative tagline goes, the link stays. */
+@media (max-width: 760px) and (max-height: 720px) {
+  .st-process-footer > span { display: none; }
+  .st-process-scene-space { height: clamp(80px, 14dvh, 150px); }
+}
+/* Very short phones (e.g. iPhone SE): drop the longer paragraph so the key points stay reachable. */
+@media (max-width: 760px) and (max-height: 640px) {
+  .st-process-note { display: none; }
+  .st-process-scene-space { height: 80px; }
+}
+
+/* About panel on phones: tighter top padding so the whole panel fits the pinned viewport. */
+@media (max-width: 600px) {
+  .about-stage { padding-top: 84px; padding-bottom: 16px; }
 }

@@ -93,6 +93,17 @@ function ServiceCard({
   const rotate = useTransform(scrollYProgress, [0, 1], [2, 0]);
   const artScale = useTransform(scrollYProgress, [0, 1], [0.94, 1]);
   const artwork = serviceArtwork[index];
+  // Phone cards are taller than the screen, so the stack pins them by their bottom edge.
+  // Publish the card height so CSS can compute that pin position without scroll handlers.
+  useEffect(() => {
+    const card = ref.current;
+    if (!card) return;
+    const publish = () => card.style.setProperty("--card-h", `${card.offsetHeight}px`);
+    publish();
+    const observer = new ResizeObserver(publish);
+    observer.observe(card);
+    return () => observer.disconnect();
+  }, []);
   return (
     <article
       id={service.name.toLowerCase()}
@@ -117,7 +128,7 @@ function ServiceCard({
         </ul>
       </div>
       <motion.div
-        className="relative isolate flex aspect-square min-h-[390px] w-full flex-col self-center overflow-hidden rounded-[28px] border border-[#2c14221c] bg-[radial-gradient(ellipse_at_50%_40%,#ffffff75,transparent_70%),var(--service-art-color)] p-[clamp(22px,2.2vw,34px)] text-[#2c1422] shadow-[inset_0_2px_2px_#ffffff80,0_24px_35px_-28px_#2c142260] min-[761px]:short-800:max-h-[490px] min-[761px]:short-800:min-h-[350px] max-[760px]:mx-auto max-[760px]:min-h-[310px] max-[760px]:w-[min(100%,480px)] max-[760px]:rounded-3xl max-[760px]:p-[22px]"
+        className="relative isolate flex aspect-square min-h-[390px] w-full flex-col self-center overflow-hidden rounded-[28px] border border-[#2c14221c] bg-[radial-gradient(ellipse_at_50%_40%,#ffffff75,transparent_70%)] bg-[color:var(--service-art-color)] p-[clamp(22px,2.2vw,34px)] text-[#2c1422] shadow-[inset_0_2px_2px_#ffffff80,0_24px_35px_-28px_#2c142260] min-[761px]:short-800:max-h-[490px] min-[761px]:short-800:min-h-[350px] max-[760px]:mx-auto max-[760px]:min-h-[310px] max-[760px]:w-[min(100%,480px)] max-[760px]:rounded-3xl max-[760px]:p-[22px]"
         aria-hidden="true"
         style={
           {
