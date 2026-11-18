@@ -5,7 +5,6 @@ import { ParticleBackground, type ParticleBackgroundOptions } from "@/app/compon
 import { getPanelOpacity, normalizeMorphEnd, type ShapeTimeline } from "@/lib/particle-timeline";
 
 interface ScrollMorphSectionProps extends ParticleBackgroundOptions {
-  hero: ReactNode;
   /** Optional About panel with a brewing particle formation. */
   aboutSection?: ReactNode;
   nextSection: ReactNode;
@@ -19,12 +18,11 @@ interface ScrollMorphSectionProps extends ParticleBackgroundOptions {
 }
 
 export function ScrollMorphSection({
-  hero, aboutSection, nextSection, additionalSections, trackHeight, id, panelLabels, morphEnd = 0.6, ...particleOptions
+  aboutSection, nextSection, additionalSections, trackHeight, id, panelLabels, morphEnd = 0.6, ...particleOptions
 }: ScrollMorphSectionProps) {
   const generatedId = useId();
   const sectionId = id ?? generatedId;
   const trackRef = useRef<HTMLDivElement>(null);
-  const heroRef = useRef<HTMLElement>(null);
   const aboutRef = useRef<HTMLElement>(null);
   const nextRef = useRef<HTMLElement>(null);
   const panelRefs = useRef<(HTMLElement | null)[]>([]);
@@ -39,7 +37,8 @@ export function ScrollMorphSection({
   const height = trackHeight !== undefined && Number.isFinite(trackHeight) ? Math.max(101, trackHeight) : defaultHeight;
 
   const updatePanels = useCallback((morph: number, reducedMotion: boolean, progress: number, timeline: ShapeTimeline) => {
-    const panels = [heroRef.current, ...(hasAbout ? [aboutRef.current] : []), nextRef.current, ...panelRefs.current];
+    // index 0 is the chaos/wave lead-in before any story panel; it has no element of its own.
+    const panels = [null, ...(hasAbout ? [aboutRef.current] : []), nextRef.current, ...panelRefs.current];
     panels.forEach((panel, index) => {
       if (!panel) return;
       const opacity = getPanelOpacity(index, timeline, morphEnd, reducedMotion, panels.length);
@@ -90,7 +89,7 @@ export function ScrollMorphSection({
         <nav aria-label="Particle story sections" className="absolute right-2 top-1/2 z-20 flex -translate-y-1/2 flex-col sm:right-5">
           {sectionLabels.map((label, index) => (
             <button key={label} type="button" ref={(node) => { dotRefs.current[index] = node; }}
-              aria-label={`Go to ${label}`} aria-controls={`${sectionId}-${index}`}
+              aria-label={`Go to ${label}`} aria-controls={index === 0 ? sectionId : `${sectionId}-${index}`}
               aria-current={index === 0 ? "step" : undefined} data-active={index === 0}
               onClick={() => navigate(index)}
               className="group flex size-11 items-center justify-center rounded-full focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent">
@@ -98,10 +97,6 @@ export function ScrollMorphSection({
             </button>
           ))}
         </nav>
-        <section ref={heroRef} id={`${sectionId}-0`}
-          className="relative z-10 flex h-full flex-col items-center justify-center px-6 text-center sm:px-14">
-          {hero}
-        </section>
         {hasAbout && (
           <section ref={aboutRef} id={`${sectionId}-1`} aria-label="About Tea Rose" aria-hidden="true" inert
             className="about-stage absolute inset-0 z-10 flex flex-col items-center overflow-y-auto pb-7 pl-6 pr-14 pt-24 opacity-0 sm:px-16 sm:pb-10 sm:pt-28 lg:pl-14 lg:pr-24 [&>.about-content]:my-auto [&>.about-content]:shrink-0">

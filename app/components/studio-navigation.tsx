@@ -38,6 +38,20 @@ export function StudioTransitionProvider({
   const fallback = useRef<ReturnType<typeof setTimeout> | null>(null);
   const previousPath = useRef(pathname);
   const pendingHash = useRef("");
+  const origin = useRef({ x: 0.5, y: 0.5 });
+
+  useEffect(() => {
+    const remember = (event: PointerEvent) => {
+      origin.current = {
+        x: event.clientX / window.innerWidth,
+        y: event.clientY / window.innerHeight,
+      };
+    };
+    window.addEventListener("pointerdown", remember, { passive: true });
+    return () => window.removeEventListener("pointerdown", remember);
+  }, []);
+
+  const bloomAt = () => `${origin.current.x * 100}% ${origin.current.y * 100}%`;
 
   const uncover = useCallback(() => {
     const el = curtain.current;
@@ -48,8 +62,11 @@ export function StudioTransitionProvider({
     animation.current = el.animate(
       turningPage
         ? [{ transform: "perspective(1800px) rotateY(0deg)" }, { transform: "perspective(1800px) rotateY(-100deg)" }]
-        : [{ transform: "translateY(0%)" }, { transform: "translateY(-101%)" }],
-      { ...curtainTiming, duration: turningPage ? 700 : curtainTiming.duration },
+        : [
+            { clipPath: `circle(150% at ${bloomAt()})` },
+            { clipPath: `circle(0% at ${bloomAt()})` },
+          ],
+      { ...curtainTiming, duration: turningPage ? 700 : 800 },
     );
     animation.current.finished
       .then(() => {
@@ -142,8 +159,11 @@ export function StudioTransitionProvider({
       animation.current = el.animate(
         turningPage
           ? [{ transform: "perspective(1800px) rotateY(100deg)" }, { transform: "perspective(1800px) rotateY(0deg)" }]
-          : [{ transform: "translateY(101%)" }, { transform: "translateY(0%)" }],
-        curtainTiming,
+          : [
+              { clipPath: `circle(0% at ${bloomAt()})` },
+              { clipPath: `circle(150% at ${bloomAt()})` },
+            ],
+        { ...curtainTiming, duration: turningPage ? curtainTiming.duration : 800 },
       );
       fallback.current = setTimeout(uncover, 4500);
       animation.current.finished

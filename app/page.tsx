@@ -65,6 +65,9 @@ function ProcessPanel({ index }: { index: number }) {
 export default function Home() {
   return (
     <main className="st-site">
+      <section className="relative z-10 flex h-dvh flex-col items-center justify-center px-6 text-center sm:px-14">
+        <Hero />
+      </section>
       <ScrollMorphSection
         id="particle-story"
         trackHeight={650}
@@ -76,7 +79,6 @@ export default function Home() {
           "Create",
           "Launch",
         ]}
-        hero={<Hero />}
         aboutSection={<AboutUs />}
         nextSection={<ProcessPanel index={0} />}
         additionalSections={[

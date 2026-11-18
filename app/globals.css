@@ -427,3 +427,48 @@ body { overflow-x: clip; }
   .st-magnetic { transform: none !important; }
   .st-industry-orbit { display: none; }
 }
+
+/* Short-viewport variant shared by components that tighten up on small heights. */
+@custom-variant short (@media (max-height: 740px));
+
+/* Marquee + wave keyframes used by the brand sections. */
+@keyframes brand-drift { to { transform: translateX(-50%); } }
+@keyframes drift-right { from { transform: translateX(-50%); } to { transform: translateX(0); } }
+@keyframes brand-s-curve {
+  0%, 100% { transform: translateY(0) rotate(-4deg); }
+  12.5% { transform: translateY(calc(var(--wave-amplitude) * -.707)) rotate(-7deg); }
+  25% { transform: translateY(calc(var(--wave-amplitude) * -1)) rotate(-2deg); }
+  37.5% { transform: translateY(calc(var(--wave-amplitude) * -.707)) rotate(4deg); }
+  50% { transform: translateY(0) rotate(7deg); }
+  62.5% { transform: translateY(calc(var(--wave-amplitude) * .707)) rotate(4deg); }
+  75% { transform: translateY(var(--wave-amplitude)) rotate(0deg); }
+  87.5% { transform: translateY(calc(var(--wave-amplitude) * .707)) rotate(-4deg); }
+}
+@keyframes float-wave {
+  0%, 100% { transform: translateY(0) rotate(-14deg); }
+  12.5% { transform: translateY(calc(var(--wave-amplitude) * -.707)) rotate(-10deg); }
+  25% { transform: translateY(calc(var(--wave-amplitude) * -1)) rotate(0deg); }
+  37.5% { transform: translateY(calc(var(--wave-amplitude) * -.707)) rotate(10deg); }
+  50% { transform: translateY(0) rotate(14deg); }
+  62.5% { transform: translateY(calc(var(--wave-amplitude) * .707)) rotate(10deg); }
+  75% { transform: translateY(var(--wave-amplitude)) rotate(0deg); }
+  87.5% { transform: translateY(calc(var(--wave-amplitude) * .707)) rotate(-10deg); }
+}
+@custom-variant short-800 (@media (max-height: 800px));
+
+/* Page entrance: inner-page sections rise in one after another as the curtain opens. */
+@keyframes page-rise {
+  from { opacity: 0; translate: 0 48px; filter: blur(8px); }
+  to { opacity: 1; translate: 0 0; filter: blur(0); }
+}
+.st-inner-page > * {
+  animation: page-rise .9s cubic-bezier(.22, 1, .36, 1) backwards;
+  animation-delay: calc(.25s + var(--enter-index, 0) * .09s);
+}
+.st-inner-page > :nth-child(2) { --enter-index: 1; }
+.st-inner-page > :nth-child(3) { --enter-index: 2; }
+.st-inner-page > :nth-child(4) { --enter-index: 3; }
+.st-inner-page > :nth-child(n + 5) { --enter-index: 4; }
+@media (prefers-reduced-motion: reduce) {
+  .st-inner-page > * { animation: none; }
+}

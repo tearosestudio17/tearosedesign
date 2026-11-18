@@ -81,7 +81,10 @@ export function ParticleBackground({
   useEffect(() => {
     const canvas = canvasRef.current;
     const track = trackRef.current;
-    const context = canvas?.getContext("2d");
+    // Force the software 2D rendering path: a GPU-accelerated full-viewport
+    // canvas that redraws every frame can get promoted to a hardware overlay
+    // plane on Linux/Chromium, which hides the OS cursor everywhere it covers.
+    const context = canvas?.getContext("2d", { willReadFrequently: true });
     if (!canvas || !context || !track) return;
 
     const artElements = Array.from({ length: 5 }, (_, index) =>

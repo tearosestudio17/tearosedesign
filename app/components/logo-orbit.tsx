@@ -5,7 +5,6 @@ import { useEffect, useRef, useState } from "react";
 import { motion, useReducedMotion, useScroll, useTransform, type MotionValue } from "framer-motion";
 import { brandMarks } from "@/lib/brand-marks";
 import { SplitHeading } from "./studio-motion";
-import styles from "./logo-orbit.module.css";
 
 function BrandMark({ brand, index, progress, width, height }: {
   brand: typeof brandMarks[number]; index: number; progress: MotionValue<number>; width: number; height: number;
@@ -37,8 +36,8 @@ function BrandMark({ brand, index, progress, width, height }: {
   const y = useTransform(progress, value => getPosition(value).y);
   const scale = useTransform(progress, value => getPosition(value).scale);
 
-  return <motion.li className={styles.mark} style={reduced ? undefined : { x, y, scale }}>
-    <div className={styles.logo}><Image src={`/brands/${brand.slug}.webp`} alt={`${brand.name} logo`} width={480} height={320} sizes="(max-width: 600px) 100px, 160px" /></div>
+  return <motion.li className="absolute top-[calc(50%-59px)] left-[calc(50%-75px)] w-[150px] text-center max-[600px]:top-[calc(50%-44px)] max-[600px]:left-[calc(50%-52px)] max-[600px]:w-[104px] motion-reduce:static motion-reduce:w-auto motion-reduce:!transform-none [&>span]:mt-2 [&>span]:block [&>span]:font-mono [&>span]:text-sm/[1.35] [&>span]:text-[#624952] max-[600px]:[&>span]:text-base" style={reduced ? undefined : { x, y, scale }}>
+    <div className="aspect-[1.5] overflow-hidden rounded-lg border border-[#2c142215] bg-white shadow-[0_8px_24px_#2c142208] [&_img]:size-full [&_img]:object-contain"><Image src={`/brands/${brand.slug}.webp`} alt={`${brand.name} logo`} width={480} height={320} sizes="(max-width: 600px) 100px, 160px" /></div>
     <span>{brand.name}</span>
   </motion.li>;
 }
@@ -59,20 +58,20 @@ export function LogoOrbit() {
     return () => observer.disconnect();
   }, []);
 
-  return <section ref={ref} className={styles.section} id="brand-worlds" aria-labelledby="brand-worlds-title">
-    <div className={styles.sticky}>
-      <div className={styles.heading}>
+  return <section ref={ref} className="relative h-[280svh] bg-[var(--paper)] text-[var(--ink)] motion-reduce:h-auto" id="brand-worlds" aria-labelledby="brand-worlds-title">
+    <div className="sticky top-0 flex h-svh flex-col overflow-clip px-[clamp(24px,5vw,80px)] pt-[120px] pb-[26px] max-[600px]:pt-[100px] max-[600px]:pb-5 motion-reduce:relative motion-reduce:h-auto motion-reduce:overflow-visible motion-reduce:py-20">
+      <div className="shrink-0 [&>div:first-child]:mb-[22px] [&_h2]:max-w-[20ch] [&_h2]:text-[clamp(32px,4.4vw,66px)] [&_h2]:leading-[1.12]">
         <div className="st-section-top"><span className="st-label">02 / Brand worlds</span><span className="st-label">A selection from the studio</span></div>
         <div id="brand-worlds-title"><SplitHeading text="Different brands. One creative orbit." className="st-heading" /></div>
       </div>
-      <div ref={stage} className={styles.stage}>
-        <motion.div className={styles.orbitGuide} aria-hidden="true" style={{ width: Math.min(size.width * 0.78, 980), height: Math.min(size.height * 0.72, size.width * 0.78), ...(reduced ? {} : { opacity: orbitOpacity }) }} />
-        <motion.div className={styles.center} aria-hidden="true" style={reduced ? undefined : { opacity: centerOpacity }}>
+      <div ref={stage} className="relative min-h-0 flex-1 motion-reduce:my-9">
+        <motion.div className="absolute top-1/2 left-1/2 -translate-1/2 rounded-full border border-[#2c14221c] motion-reduce:hidden" aria-hidden="true" style={{ width: Math.min(size.width * 0.78, 980), height: Math.min(size.height * 0.72, size.width * 0.78), ...(reduced ? {} : { opacity: orbitOpacity }) }} />
+        <motion.div className="pointer-events-none absolute inset-0 flex flex-col items-center justify-center gap-3 max-[600px]:gap-2 motion-reduce:hidden [&>span]:font-display [&>span]:text-[32px]/none [&>span]:tracking-[-.055em] max-[600px]:[&>span]:text-[22px] [&>span>span]:mt-2.5 [&>span>span]:block [&>span>span]:text-center [&>span>span]:font-mono [&>span>span]:text-sm [&>span>span]:tracking-[.14em] [&>span>span]:uppercase" aria-hidden="true" style={reduced ? undefined : { opacity: centerOpacity }}>
           <span>Tea Rose<span>Design Studio</span></span>
         </motion.div>
-        <ul className={styles.marks} aria-label="Selected brand identities">{brandMarks.map((brand, index) => <BrandMark key={brand.slug} brand={brand} index={index} progress={scrollYProgress} {...size} />)}</ul>
+        <ul className="absolute inset-0 m-0 list-none p-0 motion-reduce:relative motion-reduce:grid motion-reduce:grid-cols-4 motion-reduce:gap-x-5 motion-reduce:gap-y-7 max-[600px]:motion-reduce:grid-cols-2" aria-label="Selected brand identities">{brandMarks.map((brand, index) => <BrandMark key={brand.slug} brand={brand} index={index} progress={scrollYProgress} {...size} />)}</ul>
       </div>
-      <div className={styles.footer}><p className="st-label">Good conversations. Great brands.</p><span className={styles.scrollHint}>Scroll to bring it all together </span></div>
+      <div className="flex items-center justify-between gap-5 border-t border-t-[#2c142225] pt-5 max-[600px]:items-start max-[600px]:[&>p]:max-w-[18ch] max-[600px]:[&>p]:text-sm"><p className="st-label">Good conversations. Great brands.</p><span className="inline-flex items-center gap-3 font-mono text-sm text-[#624952] max-[600px]:max-w-[20ch] max-[600px]:leading-[1.6] motion-reduce:hidden">Scroll to bring it all together </span></div>
     </div>
   </section>;
 }
