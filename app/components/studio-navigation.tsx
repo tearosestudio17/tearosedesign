@@ -44,9 +44,12 @@ export function StudioTransitionProvider({
     if (fallback.current) clearTimeout(fallback.current);
     if (!el) return;
     animation.current?.cancel();
+    const turningPage = el.dataset.turn === "work";
     animation.current = el.animate(
-      [{ transform: "translateY(0%)" }, { transform: "translateY(-101%)" }],
-      curtainTiming,
+      turningPage
+        ? [{ transform: "perspective(1800px) rotateY(0deg)" }, { transform: "perspective(1800px) rotateY(-100deg)" }]
+        : [{ transform: "translateY(0%)" }, { transform: "translateY(-101%)" }],
+      { ...curtainTiming, duration: turningPage ? 700 : curtainTiming.duration },
     );
     animation.current.finished
       .then(() => {
@@ -133,9 +136,13 @@ export function StudioTransitionProvider({
       pendingHash.current = url.hash;
       const el = curtain.current;
       animation.current?.cancel();
+      const turningPage = url.pathname.startsWith("/work") || window.location.pathname.startsWith("/work");
+      el.dataset.turn = turningPage ? "work" : "default";
       el.hidden = false;
       animation.current = el.animate(
-        [{ transform: "translateY(101%)" }, { transform: "translateY(0%)" }],
+        turningPage
+          ? [{ transform: "perspective(1800px) rotateY(100deg)" }, { transform: "perspective(1800px) rotateY(0deg)" }]
+          : [{ transform: "translateY(101%)" }, { transform: "translateY(0%)" }],
         curtainTiming,
       );
       fallback.current = setTimeout(uncover, 4500);
@@ -178,6 +185,7 @@ export function StudioTransitionProvider({
         <div className="st-curtain-mark">
           <Image src={teaLogo} alt="" sizes="140px" />
         </div>
+        <div className="st-curtain-chapter"><span>Tea Rose / The collection</span><p>Turning<br /><em>a new leaf.</em></p><span>Good ideas deserve a good story. ↗</span></div>
         <span>Tea Rose Design Studio</span>
       </div>
     </TransitionContext.Provider>
@@ -228,7 +236,7 @@ const links = [
   { href: "/", label: "Home" },
   { href: "/studio", label: "The studio" },
   { href: "/services", label: "Our services" },
-  { href: "/#brand-worlds", label: "Brand worlds" },
+  { href: "/work", label: "Our work" },
   { href: "/#launch-24", label: "Launch 24" },
 ];
 
@@ -263,7 +271,7 @@ export function StudioNavigation() {
             <StudioLink
               key={link.label}
               href={link.href}
-              aria-current={pathname === link.href ? "page" : undefined}
+              aria-current={pathname === link.href || (link.href === "/work" && pathname.startsWith("/work/")) ? "page" : undefined}
             >
               {link.label}
             </StudioLink>
