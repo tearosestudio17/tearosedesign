@@ -1,7 +1,6 @@
 "use client";
 
 import Image from "next/image";
-import { ArrowDown, Flower2 } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { motion, useReducedMotion, useScroll, useTransform, type MotionValue } from "framer-motion";
 import { brandMarks } from "@/lib/brand-marks";
@@ -69,11 +68,11 @@ export function LogoOrbit() {
       <div ref={stage} className={styles.stage}>
         <motion.div className={styles.orbitGuide} aria-hidden="true" style={{ width: Math.min(size.width * 0.78, 980), height: Math.min(size.height * 0.72, size.width * 0.78), ...(reduced ? {} : { opacity: orbitOpacity }) }} />
         <motion.div className={styles.center} aria-hidden="true" style={reduced ? undefined : { opacity: centerOpacity }}>
-          <Flower2 strokeWidth={0.8} /><span>Tea Rose<span>Design Studio</span></span>
+          <span>Tea Rose<span>Design Studio</span></span>
         </motion.div>
         <ul className={styles.marks} aria-label="Selected brand identities">{brandMarks.map((brand, index) => <BrandMark key={brand.slug} brand={brand} index={index} progress={scrollYProgress} {...size} />)}</ul>
       </div>
-      <div className={styles.footer}><p className="st-label">Good conversations. Great brands.</p><span className={styles.scrollHint}>Scroll to bring it all together <ArrowDown size={14} aria-hidden="true" /></span></div>
+      <div className={styles.footer}><p className="st-label">Good conversations. Great brands.</p><span className={styles.scrollHint}>Scroll to bring it all together </span></div>
     </div>
   </section>;
 }
