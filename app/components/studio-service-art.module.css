@@ -24,7 +24,7 @@
 }
 
 .header > span:first-child {
-  font: 9px/1.5 var(--font-mono);
+  font: 14px/1.5 var(--font-mono);
   letter-spacing: .09em;
   text-transform: uppercase;
 }
@@ -37,7 +37,7 @@
   height: 36px;
   border: 1px solid #2c142240;
   border-radius: 50%;
-  font: 11px var(--font-mono);
+  font: 14px var(--font-mono);
 }
 
 .illustration {
@@ -66,12 +66,6 @@
   letter-spacing: -.025em;
 }
 
-.footer svg {
-  flex-shrink: 0;
-  width: 22px;
-  height: 22px;
-  stroke-width: 1;
-}
 
 @media (min-width: 761px) and (max-height: 800px) {
   .art {
@@ -89,7 +83,7 @@
     border-radius: 24px;
   }
 
-  .header > span:first-child { font-size: 8px; }
-  .number { width: 30px; height: 30px; font-size: 9px; }
+  .header > span:first-child { font-size: 14px; }
+  .number { width: 30px; height: 30px; font-size: 14px; }
   .footer > span { font-size: 23px; }
 }
