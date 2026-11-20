@@ -3,20 +3,22 @@
 import { useEffect, useRef, useState, type CSSProperties, type PointerEvent, type ReactNode } from "react";
 import Image from "next/image";
 import { animate, motion, useMotionValue, useTransform } from "framer-motion";
-import { ArrowLeft, ArrowRight, ArrowUpRight, BookOpen, MoveHorizontal } from "lucide-react";
+import { ArrowLeft, ArrowRight, ArrowUpRight, MoveHorizontal } from "lucide-react";
 import { projects, type Project } from "@/lib/work-content";
 import { StudioLink } from "./studio-navigation";
 
-type Spread = { kind: "contents" | "opening" | "story" | "outcome"; project: number; start?: number };
+type Spread = { kind: "contents" | "opening" | "story" | "outcome" | "thanks"; project: number; start?: number };
 const spreads: Spread[] = [{ kind: "contents", project: -1 }];
 projects.forEach((project, index) => {
   spreads.push({ kind: "opening", project: index });
-  for (let start = 1; start < project.sections.length; start += 2) spreads.push({ kind: "story", project: index, start });
+  for (let start = 1; start < project.sections.length; start += 4) spreads.push({ kind: "story", project: index, start });
   spreads.push({ kind: "outcome", project: index });
 });
+spreads.push({ kind: "thanks", project: -1 });
 const pages = spreads.flatMap((spread, index) => [{ spread, side: "left" as const, number: index * 2 + 1 }, { spread, side: "right" as const, number: index * 2 + 2 }]);
 const pad = (n: number) => String(n).padStart(2, "0");
 const projectPage = (project: number) => spreads.findIndex((spread) => spread.kind === "opening" && spread.project === project) * 2;
+const thanksPage = spreads.findIndex((spread) => spread.kind === "thanks") * 2;
 type Flip = { from: number; to: number; direction: number };
 
 const CREAM = "#f4ecde";
@@ -126,7 +128,7 @@ export function PortfolioBook({ initialProject, embedded = false }: { initialPro
     >
       <div aria-hidden className="pointer-events-none absolute inset-0 bg-[url('/paper-grain.png')] opacity-[0.065]" />
       <div className="relative mx-auto flex max-w-[1680px] items-center justify-between gap-[25px] font-mono text-[10px] leading-[1.5] tracking-[0.06em] text-[#d1b9c0] uppercase">
-        <div className="flex items-center gap-3"><BookOpen size={17} /><span>Tea Rose <i className="mx-2 text-[#f272a1] not-italic">—</i> The work book</span></div>
+        <div className="flex items-center gap-3"><span>Tea Rose <i className="mx-2 text-[#f272a1] not-italic">—</i> The work book</span></div>
         <span className="hidden text-[9px] sm:inline">Volume 01 / {projects.length} brand stories</span>
       </div>
 
@@ -218,10 +220,6 @@ export function PortfolioBook({ initialProject, embedded = false }: { initialPro
           {!mobile && (
             <div aria-hidden className="pointer-events-none absolute inset-y-0 z-8 w-[44px] bg-[linear-gradient(90deg,transparent,#3b241b20_40%,#2a140f6b_49%,#fff1c52e_52%,#3b241b14_65%,transparent)]" style={{ left: "calc(50% - 22px)" }} />
           )}
-          <div aria-hidden className="pointer-events-none absolute -top-[6px] right-[30px] z-10 h-[64px] w-[24px] bg-[linear-gradient(90deg,#a60f45,#f43d7c_40%,#c51f5a)] shadow-[2px_3px_4px_#0003] [clip-path:polygon(0_0,100%_0,100%_100%,50%_87%,0_100%)]">
-            <span className="mt-[23px] block font-mono text-[7px] whitespace-nowrap [transform:rotate(90deg)]">tea rose</span>
-          </div>
-
           {flip && (
             <>
               <motion.div aria-hidden className="absolute top-0 z-9 h-full w-1/2 bg-[linear-gradient(90deg,#291108bb,#29110844)] blur-[9px]" style={{ opacity: shadow, left: mobile ? 0 : flip.direction > 0 ? 0 : "50%" }} />
@@ -246,13 +244,23 @@ export function PortfolioBook({ initialProject, embedded = false }: { initialPro
           )}
 
           {!flip && current > 0 && (
-            <button type="button" className="absolute bottom-0 left-0 z-9 flex h-[44px] w-[44px] cursor-pointer items-center justify-center rounded-br-[4px] bg-[linear-gradient(225deg,transparent_45%,#dfd1bc_46%,#fff5df_53%,#8c705835)] text-[#7d5c65] transition-colors hover:bg-[#edd7cf] hover:text-[#9e1246]" aria-label="Turn to previous page" onClick={() => turn(current - step)}>
-              <ArrowLeft size={12} className="mr-[16px] mt-[15px]" />
+            <button
+              type="button"
+              className="absolute bottom-0 left-0 z-9 flex h-[44px] w-[44px] cursor-pointer items-center justify-center rounded-br-[4px] bg-[linear-gradient(225deg,transparent_45%,#dfd1bc_46%,#fff5df_53%,#8c705835)] text-[#7d5c65] shadow-none transition-colors hover:bg-[#edd7cf] hover:text-[#9e1246] max-[760px]:h-[64px] max-[760px]:w-[64px] max-[760px]:rounded-br-[8px] max-[760px]:bg-[#edd7cf] max-[760px]:text-[#9e1246] max-[760px]:shadow-[1px_2px_6px_#0002] max-[760px]:active:bg-[#e3bdc4]"
+              aria-label="Turn to previous page"
+              onClick={() => turn(current - step)}
+            >
+              <ArrowLeft size={12} className="mr-[16px] mt-[15px] max-[760px]:size-[18px] max-[760px]:mr-[20px] max-[760px]:mt-[20px]" />
             </button>
           )}
           {!flip && current < last && (
-            <button type="button" className="absolute right-0 bottom-0 z-9 flex h-[44px] w-[44px] cursor-pointer items-center justify-center rounded-tl-[10px] bg-[linear-gradient(135deg,transparent_45%,#dfd1bc_46%,#fff5df_53%,#8c705835)] text-[#7d5c65] transition-colors hover:bg-[#edd7cf] hover:text-[#9e1246]" aria-label="Turn to next page" onClick={() => turn(current + step)}>
-              <ArrowRight size={12} className="ml-[16px] mt-[15px]" />
+            <button
+              type="button"
+              className="absolute right-0 bottom-0 z-9 flex h-[44px] w-[44px] cursor-pointer items-center justify-center rounded-tl-[10px] bg-[linear-gradient(135deg,transparent_45%,#dfd1bc_46%,#fff5df_53%,#8c705835)] text-[#7d5c65] shadow-none transition-colors hover:bg-[#edd7cf] hover:text-[#9e1246] max-[760px]:h-[64px] max-[760px]:w-[64px] max-[760px]:rounded-tl-[14px] max-[760px]:bg-[#edd7cf] max-[760px]:text-[#9e1246] max-[760px]:shadow-[-1px_2px_6px_#0002] max-[760px]:active:bg-[#e3bdc4]"
+              aria-label="Turn to next page"
+              onClick={() => turn(current + step)}
+            >
+              <ArrowRight size={12} className="ml-[16px] mt-[15px] max-[760px]:size-[18px] max-[760px]:ml-[20px] max-[760px]:mt-[20px]" />
             </button>
           )}
         </motion.div>
@@ -265,7 +273,7 @@ export function PortfolioBook({ initialProject, embedded = false }: { initialPro
 
       <div className="relative mx-auto mt-5 flex max-w-[1480px] flex-wrap items-center justify-between gap-[15px] border-t border-[#f9ede429] py-[15px] sm:gap-5 sm:py-[17px]">
         <div className="flex basis-full items-center justify-between gap-[10px] font-mono text-[7px] tracking-[0.04em] uppercase sm:basis-auto sm:justify-center sm:gap-[30px] sm:text-[8px]" aria-live="polite" aria-atomic="true">
-          <span className="text-[#e2b7c6]">{project ? `${pad(currentProject + 1)} / ${project.name}` : "The collection / Contents"}</span>
+          <span className="text-[#e2b7c6]">{project ? `${pad(currentProject + 1)} / ${project.name}` : pages[current].spread.kind === "thanks" ? "Thank you" : "The collection / Contents"}</span>
           <span>Page {pad(current + 1)}{!mobile && ` — ${pad(current + 2)}`} <i className="ml-1 text-[#b99ba7] not-italic">/ {pages.length}</i></span>
         </div>
         <div className="ml-auto flex gap-2 sm:ml-0">
@@ -290,9 +298,13 @@ function Paper({ page, onJump }: { page: (typeof pages)[number]; onJump: (page: 
   const { spread, side, number } = page;
   const project = projects[spread.project];
   const left = side === "left";
-  const section = spread.kind === "story" ? project.sections[(spread.start ?? 1) + (left ? 0 : 1)] : null;
+  const pairStart = (spread.start ?? 1) + (left ? 0 : 2);
+  const items =
+    spread.kind === "story"
+      ? project.sections.slice(pairStart, pairStart + 2).map((section, i) => ({ ...section, number: pairStart + i + 1 }))
+      : [];
   const artPage = spread.kind === "opening" && !left;
-  const resultPage = spread.kind === "outcome" && !left;
+  const resultPage = (spread.kind === "outcome" || spread.kind === "thanks") && !left;
 
   const base = `relative flex h-full w-full flex-col overflow-hidden px-[25px] pt-[22px] pb-[20px] sm:px-[33px] sm:pt-[25px] sm:pb-[22px]`;
   const bg = artPage ? { background: project.color, color: project.ink } : resultPage ? { background: "#3c1829", color: "#fae9db" } : spread.kind === "contents" && left ? { background: "#f4d6d3", color: "#712540" } : { background: CREAM, color: INK };
@@ -303,18 +315,19 @@ function Paper({ page, onJump }: { page: (typeof pages)[number]; onJump: (page: 
       <div aria-hidden className="pointer-events-none absolute inset-0 z-5 bg-[url('/paper-grain.png')] opacity-[0.13] mix-blend-multiply" />
       <div className={`flex shrink-0 items-center justify-between gap-[15px] pb-[11px] font-mono text-[6px] tracking-[0.055em] uppercase sm:text-[8px] ${resultPage ? "border-b border-[#fae9db44]" : artPage ? "border-b border-current" : "border-b border-[#301b2633]"}`}>
         <span>{project ? `${pad(spread.project + 1)} / ${project.name}` : "Tea Rose Design Studio"}</span>
-        <span className="text-[6px] whitespace-nowrap sm:text-[7px]">{spread.kind === "contents" ? "The collection" : spread.kind === "opening" ? "A brand story" : spread.kind === "story" ? "The thinking" : "The details"}</span>
+        <span className="text-[6px] whitespace-nowrap sm:text-[7px]">{spread.kind === "contents" ? "The collection" : spread.kind === "opening" ? "A brand story" : spread.kind === "story" ? "The thinking" : spread.kind === "thanks" ? "The closing note" : "The details"}</span>
       </div>
 
       <div className={`relative min-h-0 flex-1 overflow-x-hidden overflow-y-auto py-5 [scrollbar-color:#a99485_transparent] [scrollbar-width:thin] [touch-action:pan-y] ${artPage ? "overflow-hidden pt-[26px]" : ""}`}>
         {spread.kind === "contents" && (left ? <TitleContent onJump={onJump} /> : <ContentsContent onJump={onJump} />)}
         {spread.kind === "opening" && (left ? <OpeningContent project={project} /> : <VisualContent project={project} />)}
-        {spread.kind === "story" && (section ? <StoryContent project={project} section={section} index={(spread.start ?? 1) + (left ? 1 : 2)} /> : <Interlude project={project} />)}
+        {spread.kind === "story" && (items.length > 0 ? <StoryContent project={project} items={items} /> : <Interlude project={project} />)}
         {spread.kind === "outcome" && (left ? <ScopeContent project={project} /> : <ResultContent project={project} index={spread.project} onJump={onJump} />)}
+        {spread.kind === "thanks" && (left ? <ThanksContent /> : <ClosingContent onJump={onJump} />)}
       </div>
 
-      <div className={`flex shrink-0 items-center justify-between gap-[15px] pt-3 text-[6px] sm:text-[7px] ${resultPage ? "border-t border-[#fae9db44]" : artPage ? "border-t border-current" : "border-t border-[#301b2633]"}`}>
-        <span>{left ? "Tea Rose / Studio journal" : "Ideas, freshly brewed."}</span>
+      <div className={`flex shrink-0 items-center justify-between gap-[15px] pt-3 text-[6px] max-[760px]:pr-[42px] max-[760px]:pl-[42px] sm:text-[7px] ${resultPage ? "border-t border-[#fae9db44]" : artPage ? "border-t border-current" : "border-t border-[#301b2633]"}`}>
+        <span>{left ? "Tea Rose / Studio journal" : spread.kind === "thanks" ? "With gratitude." : "Ideas, freshly brewed."}</span>
         <span className="text-[9px] sm:text-[10px]">{pad(number)}</span>
       </div>
     </div>
@@ -334,11 +347,9 @@ function TitleContent({ onJump }: { onJump: (page: number) => void }) {
         <h2 className="my-[7px] mb-[20px] text-[clamp(54px,6.2vw,91px)] leading-[0.84] font-[650] tracking-[-0.085em]">
           good<br /><em className="font-serif text-[1.24em] leading-[0.8] font-normal tracking-[-0.06em] italic">ideas.</em>
         </h2>
-        <span aria-hidden className="absolute top-[14%] right-[4%] text-[clamp(45px,7vw,90px)] text-[#d32c68] [transform:rotate(-12deg)]">✳</span>
       </div>
       <p className="max-w-[20ch] text-[12px] leading-[1.7] sm:text-[11px]">Seven-plus brands.<br />Different worlds.<br />One thoughtful studio.</p>
       <button type="button" className="mt-auto inline-flex cursor-pointer items-center justify-between gap-7 self-start border-b border-[#71254055] py-[15px_0_6px] text-[10px]" onClick={() => onJump(2)}>Begin the story <ArrowRight size={17} /></button>
-      <span className="absolute right-[2%] bottom-[10%] flex h-[65px] w-[65px] rotate-[-16deg] flex-col items-center justify-center rounded-full border border-[#ac506b] font-mono text-[7px] uppercase outline outline-offset-4 outline-[#ac506b] sm:bottom-[4%] sm:h-[76px] sm:w-[76px]">Freshly<br /><em className="font-serif text-[20px] font-normal tracking-normal normal-case italic">brewed.</em></span>
     </div>
   );
 }
@@ -352,15 +363,6 @@ function ContentsContent({ onJump }: { onJump: (page: number) => void }) {
         {projects.map((item, i) => (
           <button key={item.slug} className="flex flex-1 cursor-pointer items-center gap-3 border-t border-[#301b2625] py-[10px] text-left transition-[padding,color] duration-200 hover:pl-[5px] hover:text-[#ac2054]" onClick={() => onJump(projectPage(i))}>
             <span className="font-mono text-[8px] text-[#b05872]">{pad(i + 1)}</span>
-            <span className="relative size-[34px] shrink-0 overflow-hidden rounded-[4px] border border-white/60 bg-white shadow-[1px_2px_4px_rgba(0,0,0,.15)] sm:size-[40px]">
-              {item.images?.[0] ? (
-                <Image src={item.images[0].src} alt="" fill sizes="40px" className="object-cover" />
-              ) : item.logo ? (
-                <div className="flex h-full w-full items-center justify-center p-1" style={{ background: item.color }}><Image src={item.logo} alt="" width={40} height={40} className="h-auto w-full object-contain" /></div>
-              ) : (
-                <div className="h-full w-full" style={{ background: item.color }} />
-              )}
-            </span>
             <span>
               <strong className="block text-[18px] leading-[1.15] font-medium tracking-[-0.045em] sm:text-[clamp(12px,1.4vw,20px)]">{item.name}</strong>
               <small className="mt-[3px] block font-mono text-[6px] leading-[1.5] text-[#8c7374] uppercase">{item.tags.join(" + ")}</small>
@@ -370,7 +372,6 @@ function ContentsContent({ onJump }: { onJump: (page: number) => void }) {
           </button>
         ))}
       </div>
-      <p className="hidden pt-[15px] font-serif text-[15px] text-[#906a70] italic sm:block sm:text-[14px]">A little strategy. A little instinct.<br />And a story on every page.</p>
     </div>
   );
 }
@@ -381,7 +382,7 @@ function OpeningContent({ project }: { project: Project }) {
     <div className="relative flex h-full flex-col">
       <span className={`${mono} max-w-[35ch] text-[8px] text-[#9c4464]`}>Chapter <span className="block pt-2">{pad(projects.indexOf(project) + 1)} — {project.category}</span></span>
       <h2 className="relative mt-auto mb-[18px] pt-[18px] text-[clamp(37px,10vw,56px)] leading-[0.98] font-semibold tracking-[-0.075em] break-words sm:text-[clamp(28px,4.4vw,66px)]">
-        {project.name}<span className="ml-2 font-serif text-[0.5em] font-normal text-[#b32458] italic">✳</span>
+        {project.name}
       </h2>
       <p className="max-w-[22ch] font-serif text-[29px] leading-[1.06] tracking-[-0.02em] italic sm:text-[clamp(22px,2.5vw,36px)]">{project.headline}</p>
       <div className="mt-5 max-w-[43ch] space-y-2 text-[12px] leading-[1.85] text-[#785e63] sm:mt-[22px] sm:text-[11px]">
@@ -404,10 +405,10 @@ function VisualContent({ project }: { project: Project }) {
         <span>Tea Rose Studio ↗</span>
       </div>
 
-      <div className="relative mt-[28px] flex min-h-0 flex-1 items-start justify-center pt-1 sm:mt-[34px]">
+      <div className="relative mt-[28px] flex min-h-0 flex-1 items-center justify-center pt-1 sm:mt-[34px]">
         {hero ? (
-          <div className="relative mx-auto w-[82%] max-w-[420px] shrink-0 rounded-[2px] border border-black/5 bg-white p-2 shadow-[10px_18px_26px_rgba(0,0,0,.22)] [transform:rotate(-2deg)]">
-            <Image src={hero.src} alt={`${project.name} — case study photography`} width={hero.width} height={hero.height} sizes="(max-width: 760px) 80vw, 36vw" className="h-auto w-full rounded-[1px] object-contain" priority={false} />
+          <div className="relative h-full max-h-[300px] w-[78%] max-w-[380px] shrink-0 rounded-[2px] border border-black/5 bg-white p-2 shadow-[10px_18px_26px_rgba(0,0,0,.22)] [transform:rotate(-2deg)] sm:max-h-[420px]">
+            <Image src={hero.src} alt={`${project.name} — case study photography`} fill sizes="(max-width: 760px) 80vw, 36vw" className="rounded-[1px] object-cover object-[center_12%]" priority={false} />
           </div>
         ) : project.logo ? (
           <div className="flex h-full w-full items-center justify-center rounded-md" style={{ background: project.color }}><Image src={project.logo} alt={`${project.name} identity`} width={320} height={200} className="h-auto w-3/5 object-contain" /></div>
@@ -417,15 +418,15 @@ function VisualContent({ project }: { project: Project }) {
       </div>
 
       {thumbs.length > 0 && (
-        <div className="relative mt-4 hidden shrink-0 items-start justify-center gap-6 sm:flex">
+        <div className="relative mt-5 flex h-[130px] shrink-0 items-center justify-center gap-4 sm:mt-6 sm:h-[175px] sm:gap-6">
           {thumbs.slice(0, 2).map((img, i) => (
             <div
               key={img.src}
-              className={`relative w-[38%] max-w-[190px] rounded-[2px] border border-black/5 bg-white p-[6px] shadow-[4px_10px_16px_rgba(0,0,0,.18)] ${
-                i === 0 ? "[transform:rotate(-4deg)]" : "[transform:rotate(3deg)]"
+              className={`relative h-full w-[38%] max-w-[190px] rounded-[2px] border border-black/5 bg-white p-[6px] shadow-[4px_10px_16px_rgba(0,0,0,.18)] ${
+                i === 0 ? "-rotate-3" : "rotate-2"
               }`}
             >
-              <Image src={img.src} alt={`${project.name} — detail`} width={img.width} height={img.height} sizes="(max-width: 760px) 40vw, 16vw" className="h-auto w-full rounded-[1px] object-contain" />
+              <Image src={img.src} alt={`${project.name} — detail`} fill sizes="(max-width: 760px) 40vw, 16vw" className="rounded-[1px] object-cover object-[center_22%]" />
             </div>
           ))}
         </div>
@@ -436,16 +437,32 @@ function VisualContent({ project }: { project: Project }) {
   );
 }
 
-function StoryContent({ project, section, index }: { project: Project; section: Project["sections"][number]; index: number }) {
+function StoryContent({ project, items }: { project: Project; items: (Project["sections"][number] & { number: number })[] }) {
   const motif = projects.indexOf(project) % 3;
+  const compact = items.length > 1;
   return (
     <div className="relative flex h-full flex-col">
-      <Micro>The process / {pad(index)}</Micro>
-      <span aria-hidden className="mt-5 text-[105px] leading-[0.9] tracking-[-0.07em] text-[var(--pc)] sm:mt-[16px] sm:text-[clamp(75px,10vw,145px)]" style={{ textShadow: "1px 0 var(--pi)", opacity: 0.7 }}>{pad(index)}</span>
-      <h2 className="my-3 max-w-[18ch] text-[30px] leading-[1.08] font-[550] tracking-[-0.055em] sm:text-[clamp(23px,2.6vw,38px)]">{section.title}</h2>
-      <div className="max-w-[43ch] space-y-3 text-[12px] leading-[1.85] text-[#785e63] sm:text-[11px]">
-        {section.paragraphs.map((paragraph, i) => (
-          <p key={i} className={i === 0 && section.paragraphs.length > 1 ? "font-serif text-[27px] leading-[1.15] text-[#301b26] italic sm:text-[clamp(21px,2.3vw,31px)]" : undefined}>{paragraph}</p>
+      <Micro>The process{items.length === 1 ? ` / ${pad(items[0].number)}` : ""}</Micro>
+      <div className={`flex min-h-0 flex-1 flex-col ${compact ? "justify-between" : "sm:justify-center"}`}>
+        {items.map((item, i) => (
+          <div
+            key={item.number}
+            className={compact ? `flex flex-1 flex-col justify-center ${i > 0 ? "mt-[14px] border-t border-[#301b2622] pt-[18px] sm:mt-[22px] sm:pt-[26px]" : ""}` : undefined}
+          >
+            {compact ? (
+              <span className="font-mono text-[9px] tracking-[0.1em] text-[#a95870] sm:text-[10px]">{pad(item.number)}</span>
+            ) : (
+              <span aria-hidden className="mt-5 text-[105px] leading-[0.9] tracking-[-0.07em] text-[var(--pc)] sm:mt-0 sm:text-[clamp(60px,5.2vw,92px)]" style={{ textShadow: "1px 0 var(--pi)", opacity: 0.7 }}>
+                {pad(item.number)}
+              </span>
+            )}
+            <h2 className={compact ? "my-2 max-w-[20ch] text-[22px] leading-[1.1] font-[550] tracking-[-0.05em] sm:text-[clamp(20px,2.1vw,29px)]" : "my-3 max-w-[18ch] text-[30px] leading-[1.08] font-[550] tracking-[-0.055em] sm:mt-[14px] sm:mb-[20px] sm:text-[clamp(26px,3vw,44px)]"}>{item.title}</h2>
+            <div className={compact ? "max-w-[43ch] space-y-2 text-[12px] leading-[1.7] text-[#785e63] sm:text-[13px] sm:leading-[1.8]" : "max-w-[43ch] space-y-4 text-[12px] leading-[1.85] text-[#785e63] sm:space-y-5 sm:text-[16px] sm:leading-[1.9]"}>
+              {item.paragraphs.map((paragraph, pi) => (
+                <p key={pi} className={!compact && pi === 0 && item.paragraphs.length > 1 ? "font-serif text-[27px] leading-[1.15] text-[#301b26] italic sm:text-[clamp(21px,2.3vw,31px)]" : undefined}>{paragraph}</p>
+              ))}
+            </div>
+          </div>
         ))}
       </div>
       <div className="relative mt-auto flex min-h-[60px] items-center gap-2 overflow-hidden pt-[22px] sm:min-h-[80px]">
@@ -462,8 +479,7 @@ function Interlude({ project }: { project: Project }) {
   return (
     <div className="flex h-full flex-col items-start justify-center">
       <Micro>The Tea Rose approach</Micro>
-      <span aria-hidden className="my-[22px] text-[95px] text-[var(--pi)]">✳</span>
-      <h2 className="text-[clamp(30px,4vw,58px)] leading-[1] font-[550] tracking-[-0.06em]">Every detail.<br /><em className="font-serif font-normal italic">One story.</em></h2>
+      <h2 className="mt-[22px] text-[clamp(30px,4vw,58px)] leading-[1] font-[550] tracking-[-0.06em]">Every detail.<br /><em className="font-serif font-normal italic">One story.</em></h2>
       <p className="mt-[25px] max-w-[23ch] font-serif text-[23px] leading-[1.2] italic">{project.headline}</p>
     </div>
   );
@@ -487,18 +503,46 @@ function ResultContent({ project, index, onJump }: { project: Project; index: nu
   return (
     <div className="flex h-full flex-col">
       <Micro>The outcome</Micro>
-      <span aria-hidden className="mt-3 text-[75px] leading-[1.2] text-[var(--pc)] sm:text-[70px]">✳</span>
-      <h2 className="mt-3 text-[38px] leading-[1] font-[550] tracking-[-0.06em] sm:text-[clamp(27px,3.3vw,48px)]">A story<br /><em className="font-serif text-[1.15em] leading-[0.95] font-normal italic">made whole.</em></h2>
+      <h2 className="mt-5 text-[38px] leading-[1] font-[550] tracking-[-0.06em] sm:text-[clamp(27px,3.3vw,48px)]">A story<br /><em className="font-serif text-[1.15em] leading-[0.95] font-normal italic">made whole.</em></h2>
       <p className="mt-[25px] max-w-[30ch] font-serif text-[25px] leading-[1.3] text-[#e4c5cb] sm:text-[clamp(17px,2vw,27px)]">{project.outcome}</p>
-      {index < projects.length - 1 ? (
-        <button type="button" className="mt-auto flex cursor-pointer items-center justify-between gap-5 pt-[22px] text-left text-[11px] text-[#f49bb6] sm:text-[10px]" onClick={() => onJump(projectPage(index + 1))}>
-          Next chapter: {projects[index + 1].name}<ArrowRight size={17} />
-        </button>
-      ) : (
-        <StudioLink href="/#contact" className="mt-auto flex items-center justify-between gap-5 pt-[22px] text-left text-[11px] text-[#f49bb6] sm:text-[10px]">
-          Your brand could be next <ArrowUpRight size={17} />
-        </StudioLink>
-      )}
+      <button
+        type="button"
+        className="mt-auto flex cursor-pointer items-center justify-between gap-5 pt-[22px] text-left text-[11px] text-[#f49bb6] sm:text-[10px]"
+        onClick={() => onJump(index < projects.length - 1 ? projectPage(index + 1) : thanksPage)}
+      >
+        {index < projects.length - 1 ? `Next chapter: ${projects[index + 1].name}` : "Next: a closing note"}<ArrowRight size={17} />
+      </button>
+    </div>
+  );
+}
+
+function ThanksContent() {
+  return (
+    <div className="relative flex h-full flex-col">
+      <Micro>The last page</Micro>
+      <div className="relative mt-auto pt-[14px]">
+        <h2 className="my-[7px] mb-[20px] text-[clamp(48px,6vw,84px)] leading-[0.88] font-[650] tracking-[-0.08em]">
+          Thank<br /><em className="font-serif text-[1.1em] leading-[0.85] font-normal tracking-[-0.055em] italic">you.</em>
+        </h2>
+      </div>
+      <p className="max-w-[32ch] text-[12px] leading-[1.85] sm:text-[11px]">For turning every page. Eleven-plus stories, one studio, and hopefully a few ideas worth borrowing.</p>
+      <span className="mt-auto self-end pt-[14px] font-serif text-[15px] text-[#a24e64] italic [transform:rotate(-5deg)]">See you on the next page. ↗</span>
+    </div>
+  );
+}
+
+function ClosingContent({ onJump }: { onJump: (page: number) => void }) {
+  return (
+    <div className="flex h-full flex-col">
+      <Micro>Thank you</Micro>
+      <h2 className="mt-5 text-[38px] leading-[1] font-[550] tracking-[-0.06em] sm:text-[clamp(27px,3.3vw,48px)]">Your story,<br /><em className="font-serif text-[1.15em] leading-[0.95] font-normal italic">next.</em></h2>
+      <p className="mt-[25px] max-w-[30ch] font-serif text-[22px] leading-[1.3] text-[#e4c5cb] sm:text-[clamp(16px,1.9vw,25px)]">Strategy, design and stories worth turning for — whenever you&apos;re ready to begin.</p>
+      <StudioLink href="/#contact" className="mt-auto flex items-center justify-between gap-5 pt-[22px] text-left text-[11px] text-[#f49bb6] sm:text-[10px]">
+        Your brand could be next <ArrowUpRight size={17} />
+      </StudioLink>
+      <button type="button" className="mt-4 flex cursor-pointer items-center justify-between gap-5 text-left text-[11px] text-[#f49bb6]/70 sm:text-[10px]" onClick={() => onJump(0)}>
+        Back to the beginning <ArrowLeft size={17} />
+      </button>
     </div>
   );
 }
