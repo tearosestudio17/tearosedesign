@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Suspense } from "react";
 import { notFound } from "next/navigation";
 import { projects } from "@/lib/work-content";
 import { PortfolioBook } from "@/app/components/portfolio-book";
@@ -18,9 +19,19 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   };
 }
 
-export default async function CaseStudy({ params }: { params: Promise<{ slug: string }> }) {
+async function CaseStudyContent({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
   const index = projects.findIndex((item) => item.slug === slug);
   if (index === -1) notFound();
-  return <main><PortfolioBook initialProject={projects[index].slug} /></main>;
+  return <PortfolioBook initialProject={projects[index].slug} />;
+}
+
+export default function CaseStudy({ params }: { params: Promise<{ slug: string }> }) {
+  return (
+    <main>
+      <Suspense fallback={null}>
+        <CaseStudyContent params={params} />
+      </Suspense>
+    </main>
+  );
 }
