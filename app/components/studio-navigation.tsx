@@ -254,9 +254,9 @@ export function StudioLink({
 
 const links = [
   { href: "/", label: "Home" },
-  { href: "/studio", label: "The studio" },
-  { href: "/services", label: "Our services" },
-  { href: "/work", label: "Our work" },
+  { href: "/studio", label: "The Studio" },
+  { href: "/services", label: "What We Do" },
+  { href: "/work", label: "Selected Work" },
   { href: "/#launch-24", label: "Launch 24" },
 ];
 
