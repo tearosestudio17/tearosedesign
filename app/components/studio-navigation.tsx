@@ -38,35 +38,15 @@ export function StudioTransitionProvider({
   const fallback = useRef<ReturnType<typeof setTimeout> | null>(null);
   const previousPath = useRef(pathname);
   const pendingHash = useRef("");
-  const origin = useRef({ x: 0.5, y: 0.5 });
-
-  useEffect(() => {
-    const remember = (event: PointerEvent) => {
-      origin.current = {
-        x: event.clientX / window.innerWidth,
-        y: event.clientY / window.innerHeight,
-      };
-    };
-    window.addEventListener("pointerdown", remember, { passive: true });
-    return () => window.removeEventListener("pointerdown", remember);
-  }, []);
-
-  const bloomAt = () => `${origin.current.x * 100}% ${origin.current.y * 100}%`;
 
   const uncover = useCallback(() => {
     const el = curtain.current;
     if (fallback.current) clearTimeout(fallback.current);
     if (!el) return;
     animation.current?.cancel();
-    const turningPage = el.dataset.turn === "work";
     animation.current = el.animate(
-      turningPage
-        ? [{ transform: "perspective(1800px) rotateY(0deg)" }, { transform: "perspective(1800px) rotateY(-100deg)" }]
-        : [
-            { clipPath: `circle(150% at ${bloomAt()})` },
-            { clipPath: `circle(0% at ${bloomAt()})` },
-          ],
-      { ...curtainTiming, duration: turningPage ? 700 : 800 },
+      [{ transform: "perspective(1800px) rotateY(0deg)" }, { transform: "perspective(1800px) rotateY(-100deg)" }],
+      { ...curtainTiming, duration: 700 },
     );
     animation.current.finished
       .then(() => {
@@ -153,17 +133,11 @@ export function StudioTransitionProvider({
       pendingHash.current = url.hash;
       const el = curtain.current;
       animation.current?.cancel();
-      const turningPage = url.pathname.startsWith("/work") || window.location.pathname.startsWith("/work");
-      el.dataset.turn = turningPage ? "work" : "default";
+      el.dataset.turn = "work";
       el.hidden = false;
       animation.current = el.animate(
-        turningPage
-          ? [{ transform: "perspective(1800px) rotateY(100deg)" }, { transform: "perspective(1800px) rotateY(0deg)" }]
-          : [
-              { clipPath: `circle(0% at ${bloomAt()})` },
-              { clipPath: `circle(150% at ${bloomAt()})` },
-            ],
-        { ...curtainTiming, duration: turningPage ? curtainTiming.duration : 800 },
+        [{ transform: "perspective(1800px) rotateY(100deg)" }, { transform: "perspective(1800px) rotateY(0deg)" }],
+        { ...curtainTiming },
       );
       fallback.current = setTimeout(uncover, 4500);
       animation.current.finished
