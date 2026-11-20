@@ -28,12 +28,42 @@ export const projects: Project[] = [
     headline: "One brand. Every touchpoint.",
     logo: "/brands/luma.webp",
     sections: [
-      { title: "Project Overview", paragraphs: ["Building Luma from concept to market through an integrated brand and marketing strategy."] },
-      { title: "Brand Strategy", paragraphs: ["Defining brand positioning, product communication and go-to-market strategy."] },
-      { title: "Brand Identity & Packaging", paragraphs: ["Developing packaging, product presentation and a cohesive visual identity across the device and box."] },
-      { title: "Creative Direction", paragraphs: ["Conceptualising campaign shoots, product styling and visual content."] },
-      { title: "Digital Marketing", paragraphs: ["Planning social media, digital campaigns, advertising and launch communication."] },
-      { title: "E-commerce & Sales", paragraphs: ["Building the digital shopping experience and aligning marketing with product discovery and conversions."] },
+      {
+        title: "Project Overview",
+        paragraphs: [
+          "Building Luma from concept to market through an integrated brand and marketing strategy.",
+        ],
+      },
+      {
+        title: "Brand Strategy",
+        paragraphs: [
+          "Defining brand positioning, product communication and go-to-market strategy.",
+        ],
+      },
+      {
+        title: "Brand Identity & Packaging",
+        paragraphs: [
+          "Developing packaging, product presentation and a cohesive visual identity across the device and box.",
+        ],
+      },
+      {
+        title: "Creative Direction",
+        paragraphs: [
+          "Conceptualising campaign shoots, product styling and visual content.",
+        ],
+      },
+      {
+        title: "Digital Marketing",
+        paragraphs: [
+          "Planning social media, digital campaigns, advertising and launch communication.",
+        ],
+      },
+      {
+        title: "E-commerce & Sales",
+        paragraphs: [
+          "Building the digital shopping experience and aligning marketing with product discovery and conversions.",
+        ],
+      },
     ],
     scope: [
       "Brand strategy and positioning",
@@ -45,7 +75,8 @@ export const projects: Project[] = [
       "E-commerce strategy",
       "Marketing and sales support",
     ],
-    outcome: "A cohesive brand ecosystem connecting strategy, packaging, marketing and e-commerce.",
+    outcome:
+      "A cohesive brand ecosystem connecting strategy, packaging, marketing and e-commerce.",
   },
   {
     slug: "mr-beans",
@@ -56,13 +87,50 @@ export const projects: Project[] = [
     ink: "#3e261e",
     headline: "Fresh ideas. A familiar favourite.",
     logo: "/brands/mr-beans.webp",
-    images: [{ src: "/work/Mr beans/DSC09458.jpeg", width: 7008, height: 4672 }, { src: "/work/Mr beans/8DB62899-C981-4054-9FAA-24085B3A9525.png", width: 853, height: 1512 }, { src: "/work/Mr beans/IMG_7617_Original.JPG", width: 3504, height: 6240 }],
+    images: [
+      { src: "/work/Mr beans/DSC09458.jpeg", width: 7008, height: 4672 },
+      {
+        src: "/work/Mr beans/8DB62899-C981-4054-9FAA-24085B3A9525.png",
+        width: 853,
+        height: 1512,
+      },
+      {
+        src: "/work/Mr beans/IMG_7617_Original.JPG",
+        width: 3504,
+        height: 6240,
+      },
+    ],
     sections: [
-      { title: "Project Overview", paragraphs: ["Managing the brand’s social media for over 2.5 years, creating everything from everyday content to large-scale campaigns."] },
-      { title: "Social Media Management", paragraphs: ["Monthly content planning, social media execution and consistent brand communication."] },
-      { title: "Festive Campaigns", paragraphs: ["Conceptualising and designing seasonal campaigns, festive creatives and promotional content."] },
-      { title: "Menu Design", paragraphs: ["Designing monthly specials, seasonal menus and promotional menu creatives."] },
-      { title: "Store Launch — Apollo High Street", paragraphs: ["Created a black-and-white animated launch campaign featuring the brand mascot to introduce the new store."] },
+      {
+        title: "Project Overview",
+        paragraphs: [
+          "Managing the brand’s social media for over 2.5 years, creating everything from everyday content to large-scale campaigns.",
+        ],
+      },
+      {
+        title: "Social Media Management",
+        paragraphs: [
+          "Monthly content planning, social media execution and consistent brand communication.",
+        ],
+      },
+      {
+        title: "Festive Campaigns",
+        paragraphs: [
+          "Conceptualising and designing seasonal campaigns, festive creatives and promotional content.",
+        ],
+      },
+      {
+        title: "Menu Design",
+        paragraphs: [
+          "Designing monthly specials, seasonal menus and promotional menu creatives.",
+        ],
+      },
+      {
+        title: "Store Launch — Apollo High Street",
+        paragraphs: [
+          "Created a black-and-white animated launch campaign featuring the brand mascot to introduce the new store.",
+        ],
+      },
     ],
     scope: [
       "Social media strategy and management",
@@ -73,7 +141,8 @@ export const projects: Project[] = [
       "Store launch communication",
       "Creative direction and design",
     ],
-    outcome: "Over 2.5 years of consistent brand communication, creative campaigns and distinctive store-launch storytelling.",
+    outcome:
+      "Over 2.5 years of consistent brand communication, creative campaigns and distinctive store-launch storytelling.",
   },
   {
     slug: "ethiopia",
@@ -84,14 +153,58 @@ export const projects: Project[] = [
     ink: "#381b12",
     headline: "Rooted in origin. Made to stand out.",
     logo: "/brands/ethiopia.webp",
-    images: [{ src: "/work/Ethiopia/mock 01.PNG", width: 3500, height: 2300 }, { src: "/work/Ethiopia/coffee mockup 02.PNG", width: 4000, height: 3000 }, { src: "/work/Ethiopia/Coffee Mockup 022.PNG", width: 3500, height: 2300 }],
+    images: [
+      { src: "/work/Ethiopia/mock 01.PNG", width: 3500, height: 2300 },
+      { src: "/work/Ethiopia/coffee mockup 02.PNG", width: 4000, height: 3000 },
+      {
+        src: "/work/Ethiopia/Coffee Mockup 022.PNG",
+        width: 3500,
+        height: 2300,
+      },
+    ],
     sections: [
-      { title: "Brand Concept", paragraphs: ["Celebrating the origins of coffee.", "A coffee brand inspired by Ethiopia’s rich coffee heritage, bringing its culture, landscape and traditions into a distinctive visual identity."] },
-      { title: "Logo & Brand Identity", paragraphs: ["Culture translated into design.", "An illustrated emblem, bold wordmark and ornamental detailing create a recognisable identity rooted in Ethiopian inspiration."] },
-      { title: "Colour Palette", paragraphs: ["Warm, earthy and expressive.", "Burnt orange, tribal red, coffee brown, ivory and stone grey reflect the warmth of coffee and the richness of the brand’s visual language."] },
-      { title: "Illustration & Graphic Elements", paragraphs: ["Inspired by nature and heritage.", "Animals, birds, butterflies, trees and botanical motifs drawn from the original packaging create a consistent illustrated language across the brand."] },
-      { title: "Patterns & Visual Language", paragraphs: ["Details that define the identity.", "Decorative borders, geometric patterns and recurring motifs bring character, texture and consistency to the brand."] },
-      { title: "Packaging & Applications", paragraphs: ["One identity across every touchpoint.", "The visual system extends across coffee packaging and takeaway cups, connecting the logo, illustrations and patterns into a cohesive brand experience."] },
+      {
+        title: "Brand Concept",
+        paragraphs: [
+          "Celebrating the origins of coffee.",
+          "A coffee brand inspired by Ethiopia’s rich coffee heritage, bringing its culture, landscape and traditions into a distinctive visual identity.",
+        ],
+      },
+      {
+        title: "Logo & Brand Identity",
+        paragraphs: [
+          "Culture translated into design.",
+          "An illustrated emblem, bold wordmark and ornamental detailing create a recognisable identity rooted in Ethiopian inspiration.",
+        ],
+      },
+      {
+        title: "Colour Palette",
+        paragraphs: [
+          "Warm, earthy and expressive.",
+          "Burnt orange, tribal red, coffee brown, ivory and stone grey reflect the warmth of coffee and the richness of the brand’s visual language.",
+        ],
+      },
+      {
+        title: "Illustration & Graphic Elements",
+        paragraphs: [
+          "Inspired by nature and heritage.",
+          "Animals, birds, butterflies, trees and botanical motifs drawn from the original packaging create a consistent illustrated language across the brand.",
+        ],
+      },
+      {
+        title: "Patterns & Visual Language",
+        paragraphs: [
+          "Details that define the identity.",
+          "Decorative borders, geometric patterns and recurring motifs bring character, texture and consistency to the brand.",
+        ],
+      },
+      {
+        title: "Packaging & Applications",
+        paragraphs: [
+          "One identity across every touchpoint.",
+          "The visual system extends across coffee packaging and takeaway cups, connecting the logo, illustrations and patterns into a cohesive brand experience.",
+        ],
+      },
     ],
     scope: [
       "Brand conceptualisation",
@@ -103,7 +216,8 @@ export const projects: Project[] = [
       "Packaging design",
       "Creative direction and brand applications",
     ],
-    outcome: "A distinctive coffee identity that brings Ethiopian heritage, nature-inspired illustrations and contemporary packaging together.",
+    outcome:
+      "A distinctive coffee identity that brings Ethiopian heritage, nature-inspired illustrations and contemporary packaging together.",
   },
   {
     slug: "ikoi",
@@ -114,12 +228,57 @@ export const projects: Project[] = [
     ink: "#fff1dd",
     headline: "A considered launch for considered living.",
     logo: "/brands/ikoi.webp",
+    images: [
+      { src: "/work/lkoi/_AKA9959.jpeg", width: 3028, height: 5960 },
+      { src: "/work/lkoi/IMG_2630.PNG", width: 1023, height: 1537 },
+      {
+        src: "/work/lkoi/17B02478-3A22-4BA3-9B27-EB618894129A.png",
+        width: 1122,
+        height: 1402,
+      },
+      { src: "/work/lkoi/IMG_2531.PNG", width: 1080, height: 1350 },
+      {
+        src: "/work/lkoi/BCCC3C87-FEDA-40D7-8A24-1469905544B5.png",
+        width: 1023,
+        height: 1210,
+      },
+    ],
     sections: [
-      { title: "Project Overview", paragraphs: ["Building the brand from pre-launch to launch.", "A two-month project focused on planning and executing IKOI’s launch, establishing its identity as a destination for kitchens, wardrobes, furniture and home accessories."] },
-      { title: "Launch Strategy", paragraphs: ["Planning every touchpoint.", "Developed the pre-launch content plan, launch communication and creative direction to build awareness and introduce the brand."] },
-      { title: "Shoot & Styling", paragraphs: ["Bringing the spaces to life.", "Planned and executed the launch shoot, including styling and visual storytelling across kitchens, wardrobes, furniture and accessories."] },
-      { title: "Content & Social Media", paragraphs: ["Creating a cohesive digital presence.", "Developed content and creative assets to showcase the store’s products, materials, craftsmanship and design details."] },
-      { title: "Launch Execution", paragraphs: ["From planning to execution.", "Managed the creative rollout across the launch period, ensuring consistency across visuals, content and brand communication."] },
+      {
+        title: "Project Overview",
+        paragraphs: [
+          "Building the brand from pre-launch to launch.",
+          "A two-month project focused on planning and executing IKOI’s launch, establishing its identity as a destination for kitchens, wardrobes, furniture and home accessories.",
+        ],
+      },
+      {
+        title: "Launch Strategy",
+        paragraphs: [
+          "Planning every touchpoint.",
+          "Developed the pre-launch content plan, launch communication and creative direction to build awareness and introduce the brand.",
+        ],
+      },
+      {
+        title: "Shoot & Styling",
+        paragraphs: [
+          "Bringing the spaces to life.",
+          "Planned and executed the launch shoot, including styling and visual storytelling across kitchens, wardrobes, furniture and accessories.",
+        ],
+      },
+      {
+        title: "Content & Social Media",
+        paragraphs: [
+          "Creating a cohesive digital presence.",
+          "Developed content and creative assets to showcase the store’s products, materials, craftsmanship and design details.",
+        ],
+      },
+      {
+        title: "Launch Execution",
+        paragraphs: [
+          "From planning to execution.",
+          "Managed the creative rollout across the launch period, ensuring consistency across visuals, content and brand communication.",
+        ],
+      },
     ],
     scope: [
       "Launch strategy and planning",
@@ -130,7 +289,8 @@ export const projects: Project[] = [
       "Social media content and communication",
       "Launch campaign execution",
     ],
-    outcome: "A planned and executed launch supported by cohesive visuals, strategic content and consistent brand communication.",
+    outcome:
+      "A planned and executed launch supported by cohesive visuals, strategic content and consistent brand communication.",
   },
   {
     slug: "ikigai",
@@ -141,13 +301,47 @@ export const projects: Project[] = [
     ink: "#19234a",
     headline: "A little purpose. A lot of flavour.",
     logo: "/brands/ikigai.webp",
-    images: [{ src: "/work/Ikigai/PRA08205.jpeg", width: 2738, height: 3651 }, { src: "/work/Ikigai/Artboard 6.jpeg", width: 1080, height: 1350 }, { src: "/work/Ikigai/Artboard 9.jpeg", width: 1080, height: 1350 }],
+    images: [
+      { src: "/work/Ikigai/PRA08205.jpeg", width: 2738, height: 3651 },
+      { src: "/work/Ikigai/Artboard 6.jpeg", width: 1080, height: 1350 },
+      { src: "/work/Ikigai/Artboard 9.jpeg", width: 1080, height: 1350 },
+    ],
     sections: [
-      { title: "Project Overview", paragraphs: ["Building a brand for a cloud kitchen.", "Ikigai Kitchen brings Japanese philosophy into food branding through a distinct, cohesive visual identity."] },
-      { title: "Conceptualisation & Brand Identity", paragraphs: ["Turning the concept into a visual identity.", "A cloud-inspired logo, fluid forms and Japanese minimalism shaped the brand’s core identity."] },
-      { title: "Logo Design & Visual Language", paragraphs: ["A distinct visual system.", "Sakura pink, deep blue, clean neutrals and flowing lines create a balanced, recognisable identity."] },
-      { title: "Photography & Content Creation", paragraphs: ["Bringing the brand to life.", "Food photography and creative direction established a consistent visual style for the brand."] },
-      { title: "Social Media & Marketing", paragraphs: ["Building a cohesive digital presence.", "Content planning, social media management and marketing execution strengthened brand communication."] },
+      {
+        title: "Project Overview",
+        paragraphs: [
+          "Building a brand for a cloud kitchen.",
+          "Ikigai Kitchen brings Japanese philosophy into food branding through a distinct, cohesive visual identity.",
+        ],
+      },
+      {
+        title: "Conceptualisation & Brand Identity",
+        paragraphs: [
+          "Turning the concept into a visual identity.",
+          "A cloud-inspired logo, fluid forms and Japanese minimalism shaped the brand’s core identity.",
+        ],
+      },
+      {
+        title: "Logo Design & Visual Language",
+        paragraphs: [
+          "A distinct visual system.",
+          "Sakura pink, deep blue, clean neutrals and flowing lines create a balanced, recognisable identity.",
+        ],
+      },
+      {
+        title: "Photography & Content Creation",
+        paragraphs: [
+          "Bringing the brand to life.",
+          "Food photography and creative direction established a consistent visual style for the brand.",
+        ],
+      },
+      {
+        title: "Social Media & Marketing",
+        paragraphs: [
+          "Building a cohesive digital presence.",
+          "Content planning, social media management and marketing execution strengthened brand communication.",
+        ],
+      },
     ],
     scope: [
       "Brand strategy and conceptualisation",
@@ -157,7 +351,8 @@ export const projects: Project[] = [
       "Social media management",
       "Marketing and content planning",
     ],
-    outcome: "A consistent brand identity across visuals, content and digital platforms.",
+    outcome:
+      "A consistent brand identity across visuals, content and digital platforms.",
   },
   {
     slug: "the-figure-out",
@@ -168,13 +363,51 @@ export const projects: Project[] = [
     ink: "#2b1844",
     headline: "From concept to camera to cart.",
     logo: null,
-    images: [{ src: "/work/The figure out/DSC00754.jpeg", width: 3072, height: 4608 }, { src: "/work/The figure out/IMG_0042.JPEG", width: 5464, height: 8192 }, { src: "/work/The figure out/A9A6C342-554A-47A9-9533-CED6ECB0BC41.png", width: 1024, height: 1536 }],
+    images: [
+      { src: "/work/The figure out/DSC00754.jpeg", width: 3000, height: 5000 },
+      { src: "/work/The figure out/IMG_0042.JPEG", width: 5464, height: 8192 },
+      {
+        src: "/work/The figure out/A9A6C342-554A-47A9-9533-CED6ECB0BC41.png",
+        width: 1024,
+        height: 1536,
+      },
+    ],
     sections: [
-      { title: "Project Overview", paragraphs: ["Building a stronger digital presence.", "A focused engagement combining social media management, campaign shoots and digital marketing strategy for an e-commerce brand."] },
-      { title: "Campaign Strategy", paragraphs: ["Strategy built around the brand.", "Planned digital campaigns and advertising strategies to strengthen brand communication, product visibility and online reach."] },
-      { title: "Campaign Shoots & Styling", paragraphs: ["Concept to camera.", "Developed campaign concepts and executed model shoots, covering styling, creative direction and visual production."] },
-      { title: "Social Media & Content", paragraphs: ["Creating content that connects.", "Planned and managed social media content to showcase products through cohesive visuals and brand-led storytelling."] },
-      { title: "Digital Advertising", paragraphs: ["Turning strategy into performance.", "Strategised digital campaigns and ad creatives aligned with the brand’s e-commerce objectives and customer journey."] },
+      {
+        title: "Project Overview",
+        paragraphs: [
+          "Building a stronger digital presence.",
+          "A focused engagement combining social media management, campaign shoots and digital marketing strategy for an e-commerce brand.",
+        ],
+      },
+      {
+        title: "Campaign Strategy",
+        paragraphs: [
+          "Strategy built around the brand.",
+          "Planned digital campaigns and advertising strategies to strengthen brand communication, product visibility and online reach.",
+        ],
+      },
+      {
+        title: "Campaign Shoots & Styling",
+        paragraphs: [
+          "Concept to camera.",
+          "Developed campaign concepts and executed model shoots, covering styling, creative direction and visual production.",
+        ],
+      },
+      {
+        title: "Social Media & Content",
+        paragraphs: [
+          "Creating content that connects.",
+          "Planned and managed social media content to showcase products through cohesive visuals and brand-led storytelling.",
+        ],
+      },
+      {
+        title: "Digital Advertising",
+        paragraphs: [
+          "Turning strategy into performance.",
+          "Strategised digital campaigns and ad creatives aligned with the brand’s e-commerce objectives and customer journey.",
+        ],
+      },
     ],
     scope: [
       "Social media strategy and management",
@@ -185,7 +418,8 @@ export const projects: Project[] = [
       "Digital campaign strategy",
       "Advertising strategy and ad creatives",
     ],
-    outcome: "A cohesive digital marketing approach combining campaign-led visuals, strategic content and advertising for an e-commerce brand.",
+    outcome:
+      "A cohesive digital marketing approach combining campaign-led visuals, strategic content and advertising for an e-commerce brand.",
   },
   {
     slug: "teens-beyond",
@@ -196,12 +430,40 @@ export const projects: Project[] = [
     ink: "#5c1030",
     headline: "A fresh face for Gen Z skincare.",
     logo: null,
-    images: [{ src: "/work/Teens & beyond/DSC00049.jpeg", width: 4608, height: 3072 }, { src: "/work/Teens & beyond/MDF09271.jpeg", width: 4608, height: 3072 }, { src: "/work/Teens & beyond/BDE951CC-02B4-492F-8F78-30A41E678034.png", width: 1024, height: 1536 }],
+    images: [
+      { src: "/work/Teens & beyond/DSC00049.jpeg", width: 4608, height: 3072 },
+      { src: "/work/Teens & beyond/MDF09271.jpeg", width: 4608, height: 3072 },
+      {
+        src: "/work/Teens & beyond/BDE951CC-02B4-492F-8F78-30A41E678034.png",
+        width: 1024,
+        height: 1536,
+      },
+    ],
     sections: [
-      { title: "Project Overview", paragraphs: ["Building a fresh visual identity for a skincare brand designed for teenagers, with a campaign that speaks directly to the Gen Z audience."] },
-      { title: "Campaign Conceptualisation", paragraphs: ["Developing the launch campaign from scratch, including creative concepts, moodboards, visual references and campaign storytelling."] },
-      { title: "Launch Shoot & Art Direction", paragraphs: ["Planning and executing a complete campaign shoot featuring the brand’s skincare range, with youthful styling, playful compositions and product-focused visuals."] },
-      { title: "Brand Communication", paragraphs: ["Creating engaging visual content that introduces the products, communicates their benefits and builds a relatable connection with the target audience."] },
+      {
+        title: "Project Overview",
+        paragraphs: [
+          "Building a fresh visual identity for a skincare brand designed for teenagers, with a campaign that speaks directly to the Gen Z audience.",
+        ],
+      },
+      {
+        title: "Campaign Conceptualisation",
+        paragraphs: [
+          "Developing the launch campaign from scratch, including creative concepts, moodboards, visual references and campaign storytelling.",
+        ],
+      },
+      {
+        title: "Launch Shoot & Art Direction",
+        paragraphs: [
+          "Planning and executing a complete campaign shoot featuring the brand’s skincare range, with youthful styling, playful compositions and product-focused visuals.",
+        ],
+      },
+      {
+        title: "Brand Communication",
+        paragraphs: [
+          "Creating engaging visual content that introduces the products, communicates their benefits and builds a relatable connection with the target audience.",
+        ],
+      },
     ],
     scope: [
       "Campaign strategy and conceptualisation",
@@ -212,7 +474,8 @@ export const projects: Project[] = [
       "Social media creatives",
       "Campaign content development",
     ],
-    outcome: "A distinctive launch campaign that gives Teens & Beyond a youthful, contemporary visual presence and introduces the brand through engaging, product-led storytelling.",
+    outcome:
+      "A distinctive launch campaign that gives Teens & Beyond a youthful, contemporary visual presence and introduces the brand through engaging, product-led storytelling.",
   },
   {
     slug: "kinders-den",
@@ -224,11 +487,36 @@ export const projects: Project[] = [
     headline: "A community built, one playdate at a time.",
     logo: null,
     sections: [
-      { title: "Project Overview", paragraphs: ["An ongoing creative and marketing partnership focused on building Kinder’s Den into a recognisable community for children, parents and families."] },
-      { title: "Content Strategy & Social Media", paragraphs: ["Developing consistent content strategies and managing the brand’s social media presence through engaging posts, reels, stories and activity-led communication."] },
-      { title: "Content Shoots & Creative Direction", paragraphs: ["Conceptualising and conducting regular content shoots to capture children’s activities, playdates, events, learning experiences and everyday moments."] },
-      { title: "Lead Generation & Digital Marketing", paragraphs: ["Planning and executing lead generation campaigns to reach relevant parents, drive enquiries, promote events and increase registrations."] },
-      { title: "Brand Communication", paragraphs: ["Building a warm, community-driven identity through creative storytelling, event promotions and consistent digital communication."] },
+      {
+        title: "Project Overview",
+        paragraphs: [
+          "An ongoing creative and marketing partnership focused on building Kinder’s Den into a recognisable community for children, parents and families.",
+        ],
+      },
+      {
+        title: "Content Strategy & Social Media",
+        paragraphs: [
+          "Developing consistent content strategies and managing the brand’s social media presence through engaging posts, reels, stories and activity-led communication.",
+        ],
+      },
+      {
+        title: "Content Shoots & Creative Direction",
+        paragraphs: [
+          "Conceptualising and conducting regular content shoots to capture children’s activities, playdates, events, learning experiences and everyday moments.",
+        ],
+      },
+      {
+        title: "Lead Generation & Digital Marketing",
+        paragraphs: [
+          "Planning and executing lead generation campaigns to reach relevant parents, drive enquiries, promote events and increase registrations.",
+        ],
+      },
+      {
+        title: "Brand Communication",
+        paragraphs: [
+          "Building a warm, community-driven identity through creative storytelling, event promotions and consistent digital communication.",
+        ],
+      },
     ],
     scope: [
       "Social media strategy and management",
@@ -241,7 +529,8 @@ export const projects: Project[] = [
       "Event and playdate promotions",
       "Brand communication and creative direction",
     ],
-    outcome: "An ongoing partnership spanning over 2–3 years, building a consistent digital presence, strengthening community engagement and driving enquiries through strategic content and lead generation.",
+    outcome:
+      "An ongoing partnership spanning over 2–3 years, building a consistent digital presence, strengthening community engagement and driving enquiries through strategic content and lead generation.",
   },
   {
     slug: "inizio",
@@ -252,12 +541,44 @@ export const projects: Project[] = [
     ink: "#2b2622",
     headline: "Consistency, considered.",
     logo: null,
-    images: [{ src: "/work/Inizio/5W7A9632_Original.JPG", width: 4364, height: 3840 }, { src: "/work/Inizio/2A316C64-D6E7-49A8-A25F-FE4F6672A91D.png", width: 1024, height: 1536 }, { src: "/work/Inizio/EB5DBD45-7BD8-473F-9CFD-0AC8B8A668F0.png", width: 1204, height: 1306 }],
+    images: [
+      { src: "/work/Inizio/5W7A9632_Original.JPG", width: 4364, height: 3840 },
+      {
+        src: "/work/Inizio/2A316C64-D6E7-49A8-A25F-FE4F6672A91D.png",
+        width: 1024,
+        height: 1536,
+      },
+      {
+        src: "/work/Inizio/EB5DBD45-7BD8-473F-9CFD-0AC8B8A668F0.png",
+        width: 1204,
+        height: 1306,
+      },
+    ],
     sections: [
-      { title: "Project Overview", paragraphs: ["Creating a cohesive brand presence through strategic design and visual communication, ensuring consistency across brand touchpoints."] },
-      { title: "Brand Identity", paragraphs: ["Developing visual elements that communicate the brand’s personality through considered design, typography and colour direction."] },
-      { title: "Creative Development", paragraphs: ["Translating brand ideas into engaging creatives and visual assets that create a recognisable brand language."] },
-      { title: "Brand Applications", paragraphs: ["Extending the visual identity across relevant marketing and communication touchpoints."] },
+      {
+        title: "Project Overview",
+        paragraphs: [
+          "Creating a cohesive brand presence through strategic design and visual communication, ensuring consistency across brand touchpoints.",
+        ],
+      },
+      {
+        title: "Brand Identity",
+        paragraphs: [
+          "Developing visual elements that communicate the brand’s personality through considered design, typography and colour direction.",
+        ],
+      },
+      {
+        title: "Creative Development",
+        paragraphs: [
+          "Translating brand ideas into engaging creatives and visual assets that create a recognisable brand language.",
+        ],
+      },
+      {
+        title: "Brand Applications",
+        paragraphs: [
+          "Extending the visual identity across relevant marketing and communication touchpoints.",
+        ],
+      },
     ],
     scope: [
       "Brand conceptualisation",
@@ -267,7 +588,8 @@ export const projects: Project[] = [
       "Marketing collaterals",
       "Brand applications",
     ],
-    outcome: "A cohesive visual direction that creates a consistent brand presence and strengthens recognition across communication platforms.",
+    outcome:
+      "A cohesive visual direction that creates a consistent brand presence and strengthens recognition across communication platforms.",
   },
   {
     slug: "menyre",
@@ -278,12 +600,36 @@ export const projects: Project[] = [
     ink: "#3a1530",
     headline: "Delhi fashion, dressed in story.",
     logo: null,
-    images: [{ src: "/work/Menyre/0C0A8577_Original.JPG", width: 3648, height: 5472 }, { src: "/work/Menyre/0C0A0159_Original.JPG", width: 2272, height: 3408 }, { src: "/work/Menyre/0C0A0461_Original.JPG", width: 3648, height: 5472 }],
+    images: [
+      { src: "/work/Menyre/0C0A8577_Original.JPG", width: 3648, height: 5472 },
+      { src: "/work/Menyre/0C0A0159_Original.JPG", width: 2272, height: 3408 },
+      { src: "/work/Menyre/0C0A0461_Original.JPG", width: 3648, height: 5472 },
+    ],
     sections: [
-      { title: "Project Overview", paragraphs: ["Creating a distinct digital presence for Menyre, a Delhi-based fashion brand, through campaign-led content and social media communication."] },
-      { title: "Campaign Conceptualisation", paragraphs: ["Developing shoot concepts and visual references that translate the brand’s fashion identity into engaging campaign content."] },
-      { title: "Fashion Shoot & Art Direction", paragraphs: ["Planning and executing a fashion shoot, including creative direction, styling and visual storytelling to showcase the collection."] },
-      { title: "Social Media & Content", paragraphs: ["Managing social media communication and creating content that presents the collection through a consistent, brand-led visual language."] },
+      {
+        title: "Project Overview",
+        paragraphs: [
+          "Creating a distinct digital presence for Menyre, a Delhi-based fashion brand, through campaign-led content and social media communication.",
+        ],
+      },
+      {
+        title: "Campaign Conceptualisation",
+        paragraphs: [
+          "Developing shoot concepts and visual references that translate the brand’s fashion identity into engaging campaign content.",
+        ],
+      },
+      {
+        title: "Fashion Shoot & Art Direction",
+        paragraphs: [
+          "Planning and executing a fashion shoot, including creative direction, styling and visual storytelling to showcase the collection.",
+        ],
+      },
+      {
+        title: "Social Media & Content",
+        paragraphs: [
+          "Managing social media communication and creating content that presents the collection through a consistent, brand-led visual language.",
+        ],
+      },
     ],
     scope: [
       "Campaign conceptualisation and planning",
@@ -293,23 +639,61 @@ export const projects: Project[] = [
       "Social media strategy and management",
       "Content planning and creative design",
     ],
-    outcome: "A cohesive fashion campaign and digital presence, bringing the collection to life through considered visuals and consistent social media communication.",
+    outcome:
+      "A cohesive fashion campaign and digital presence, bringing the collection to life through considered visuals and consistent social media communication.",
   },
   {
     slug: "industrial-brands",
     name: "Industrial Brands",
-    category: "Selected Packaging, Product Design & Brand Communication Projects",
+    category:
+      "Selected Packaging, Product Design & Brand Communication Projects",
     tags: ["Packaging", "Branding"],
     color: "#cbd7dc",
     ink: "#1f2a30",
     headline: "Built for the shelf. Made to perform.",
     logo: null,
-    images: [{ src: "/work/Industrial brands/DSC06530_Original.JPG", width: 4672, height: 7008 }, { src: "/work/Industrial brands/261C71E6-1D64-4DC5-8EE1-D66AF9605E15.png", width: 1024, height: 1536 }, { src: "/work/Industrial brands/IMG_1340.JPG", width: 1201, height: 1501 }],
+    images: [
+      {
+        src: "/work/Industrial brands/DSC06530_Original.JPG",
+        width: 4672,
+        height: 7008,
+      },
+      {
+        src: "/work/Industrial brands/261C71E6-1D64-4DC5-8EE1-D66AF9605E15.png",
+        width: 1024,
+        height: 1536,
+      },
+      {
+        src: "/work/Industrial brands/IMG_1340.JPG",
+        width: 1201,
+        height: 1501,
+      },
+    ],
     sections: [
-      { title: "Project Overview", paragraphs: ["A showcase of creative work developed for businesses across industrial and product-led sectors. Each project is shaped around the product, its audience and the communication needs of its category."] },
-      { title: "Packaging & Label Design", paragraphs: ["Conceptualising and designing packaging, labels and product graphics that balance practical information with clear, distinctive visual presentation."] },
-      { title: "Visual Identity & Product Communication", paragraphs: ["Creating design systems and marketing assets that communicate product features, brand values and key information consistently."] },
-      { title: "Creative Production", paragraphs: ["Supporting projects with product photography and visual assets that present products clearly across relevant brand and marketing touchpoints."] },
+      {
+        title: "Project Overview",
+        paragraphs: [
+          "A showcase of creative work developed for businesses across industrial and product-led sectors. Each project is shaped around the product, its audience and the communication needs of its category.",
+        ],
+      },
+      {
+        title: "Packaging & Label Design",
+        paragraphs: [
+          "Conceptualising and designing packaging, labels and product graphics that balance practical information with clear, distinctive visual presentation.",
+        ],
+      },
+      {
+        title: "Visual Identity & Product Communication",
+        paragraphs: [
+          "Creating design systems and marketing assets that communicate product features, brand values and key information consistently.",
+        ],
+      },
+      {
+        title: "Creative Production",
+        paragraphs: [
+          "Supporting projects with product photography and visual assets that present products clearly across relevant brand and marketing touchpoints.",
+        ],
+      },
     ],
     scope: [
       "Packaging conceptualisation and design",
@@ -319,6 +703,7 @@ export const projects: Project[] = [
       "Product-focused creative design",
       "Photography and visual content",
     ],
-    outcome: "A selection of projects across different industrial and product categories, showcasing our approach to packaging, design and clear brand communication.",
+    outcome:
+      "A selection of projects across different industrial and product categories, showcasing our approach to packaging, design and clear brand communication.",
   },
 ];
