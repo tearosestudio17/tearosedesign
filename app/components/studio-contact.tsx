@@ -66,18 +66,17 @@ export function StudioContact() {
             <StudioLink href="/" className="st-footer-brand">
               Tea Rose<span>DESIGN STUDIO</span>
             </StudioLink>
-            <span className="st-footer-credit">
-              Design &amp; Developed by{" "}
-              <a
-                href="https://www.launchleap.in/"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                LaunchLeap
-              </a>
-            </span>
           </div>
-          <span className="st-label">India & beyond</span>
+          <span className="st-footer-credit">
+            Design &amp; Developed by{" "}
+            <a
+              href="https://www.launchleap.in/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              LaunchLeap
+            </a>
+          </span>
           <a href="#" className="st-text-link">
             Back to top{" "}
           </a>
