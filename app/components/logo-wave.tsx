@@ -11,7 +11,7 @@ function WaveLogo({ brand, index, duplicate }: {
 }) {
   return <li className="w-[210px] flex-shrink-0 origin-center animate-[float-wave_24s_linear_infinite] [animation-delay:var(--wave-delay)] group-not-data-[animating=true]/sec:[animation-play-state:paused] group-hover/wave:[animation-play-state:paused] max-[600px]:w-[132px] motion-reduce:w-auto motion-reduce:animate-none motion-reduce:transform-none" style={{ "--wave-delay": `${-index * 6}s` } as CSSProperties}>
     <div className="group/card aspect-[1.65] overflow-hidden rounded-[clamp(22px,2.6vw,44px)] border border-[#ffffff80] bg-white shadow-[0_12px_32px_#290d211c] transition-[translate,box-shadow] duration-300 ease-in-out hover:-translate-y-1.5 hover:shadow-[0_22px_40px_#290d2133] max-[600px]:rounded-[20px] motion-reduce:transition-none [&_img]:size-full [&_img]:object-contain [&_img]:p-[8%]" title={brand.name}>
-      <Image src={`/brands/${brand.slug}.webp`} alt={duplicate ? "" : `${brand.name} logo`} width={480} height={320}
+      <Image src={`/brands/${brand.slug}.${"ext" in brand ? brand.ext : "webp"}`} alt={duplicate ? "" : `${brand.name} logo`} width={480} height={320}
         sizes="(max-width: 600px) 132px, 210px" />
     </div>
   </li>;

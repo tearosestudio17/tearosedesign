@@ -3,7 +3,7 @@ export const brandMarks = [
   { name: "Ovenly", slug: "ovenly" },
   { name: "Mr. Beans", slug: "mr-beans" },
   { name: "The Gourmet Store", slug: "gourmet-store" },
-  { name: "Domigo", slug: "domigo" },
+  { name: "Domigo", slug: "domigo", ext: "jpg" },
   { name: "Iris", slug: "iris" },
   { name: "Inizio", slug: "inizio" },
   { name: "El Olivo", slug: "el-olivo" },

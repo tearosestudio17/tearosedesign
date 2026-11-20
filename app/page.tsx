@@ -29,7 +29,10 @@ function ProcessPanel({ index }: { index: number }) {
           <AnimatedReveal>
             <p className="st-process-lead">{step.text}</p>
             <p className="st-process-note">{step.note}</p>
-            <ul className="st-process-topics" aria-label={`${step.title} Focus areas`}>
+            <ul
+              className="st-process-topics"
+              aria-label={`${step.title} Focus areas`}
+            >
               {step.items.map((item, itemIndex) => (
                 <li key={item}>
                   <span aria-hidden="true">0{itemIndex + 1}</span>
@@ -45,7 +48,11 @@ function ProcessPanel({ index }: { index: number }) {
             </div>
           </AnimatedReveal>
         </div>
-        <div className="st-process-scene-space" data-particle-art={index + 1} aria-hidden="true" />
+        <div
+          className="st-process-scene-space"
+          data-particle-art={index + 1}
+          aria-hidden="true"
+        />
       </div>
       <ol
         className="st-process-steps"
@@ -65,12 +72,13 @@ function ProcessPanel({ index }: { index: number }) {
 export default function Home() {
   return (
     <main className="st-site">
-      <section className="relative z-10 flex h-dvh flex-col items-center justify-center px-6 text-center sm:px-14">
+      <section className="relative z-10 flex h-dvh flex-col items-center justify-center  text-center sm:px-14">
         <Hero />
       </section>
       <ScrollMorphSection
         id="particle-story"
         trackHeight={650}
+        morphEnd={0.38}
         panelLabels={[
           "Home",
           "About us",
