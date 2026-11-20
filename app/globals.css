@@ -134,7 +134,7 @@ body { overflow-x: clip; }
 .st-desktop-nav a:hover::after, .st-desktop-nav a[aria-current=page]::after { transform: scaleX(1); transform-origin: left; }
 .st-nav-actions { display: flex; align-items: center; gap: 16px; }
 .st-menu-toggle { display: none; cursor: pointer; padding: 10px; min-height: 44px; font-size: 16px; }
-.st-menu-backdrop, .st-booking-backdrop { position: fixed; inset: 0; z-index: 100; background: #120910b3; backdrop-filter: blur(12px); }
+.st-menu-backdrop { position: fixed; inset: 0; z-index: 100; background: #120910b3; backdrop-filter: blur(12px); }
 .st-menu-panel { position: fixed; inset: 0; z-index: 101; background: var(--accent); color: #2c1422; display: flex; flex-direction: column; justify-content: center; padding: 10vw 7vw; animation: st-ink-menu .65s cubic-bezier(.76,0,.24,1) both; }
 @keyframes st-ink-menu { from { clip-path: circle(0% at 95% 5%); } to { clip-path: circle(145% at 95% 5%); } }
 .st-menu-close { position: absolute; top: 25px; right: 25px; padding: 12px; cursor: pointer; min-height: 44px; font-size: 16px; }
@@ -313,11 +313,6 @@ body { overflow-x: clip; }
 .st-footer-credit { display: block; margin-top: 14px; font: 12px/1.6 var(--font-mono); letter-spacing: .1em; text-transform: uppercase; color: #fff0f599; }
 .st-footer-credit a { color: var(--accent); transition: opacity .2s; }
 .st-footer-credit a:hover { opacity: .7; }
-.st-booking-popup { position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 101; width: min(550px, calc(100% - 32px)); max-height: 85dvh; overflow-y: auto; border: 1px solid #ff237e44; border-radius: 24px; padding: 45px; background: #21101c; color: #fff3f7; }
-.st-booking-close { position: absolute; top: 15px; right: 15px; padding: 10px; cursor: pointer; min-height: 44px; font-size: 16px; }
-.st-booking-popup > .st-label { padding-top: 25px; display: block; color: var(--accent); }
-.st-booking-popup h2 { font: 35px/1.15 var(--font-display); letter-spacing: -.03em; margin-top: 18px; }
-.st-booking-popup p { font-size: 18px; line-height: 1.8; color: #c9abbc; margin: 22px 0; }
 @keyframes st-breathe { 0%,100% { transform: scale(.9); } 50% { transform: scale(1.1); } }
 @keyframes st-flower-turn { to { transform: rotate(360deg); } }
 @keyframes st-signal { 0%,100% { transform: scaleY(.7); } 50% { transform: scaleY(1); } }

@@ -6,6 +6,14 @@ import { StudioNavigation, StudioTransitionProvider } from "./components/studio-
 export const metadata: Metadata = {
   title: "Tea Rose Design Studio | Branding & Digital Marketing Agency in India & Worldwide",
   description: "Tea Rose Design Studio is a creative branding and digital marketing agency. Brand strategy, design, Meta ads, social media and product launches for brands in India and across the globe.",
+  keywords: [
+    "branding agency India",
+    "digital marketing agency",
+    "brand strategy agency",
+    "logo and brand identity design",
+    "social media marketing agency",
+    "Tea Rose Design Studio",
+  ],
 };
 
 export const viewport: Viewport = {

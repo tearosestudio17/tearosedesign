@@ -4,6 +4,13 @@ import { StudioAboutIntro, StudioContact, StudioFounder, StudioWhy } from "@/app
 export const metadata: Metadata = {
   title: "A Creative Agency Brewed on Strategy | Tea Rose Design Studio",
   description: "Meet Trishi Jain and Tea Rose Design Studio. Research, design and marketing to help brands look sharper, sound clearer and grow faster.",
+  keywords: [
+    "about Tea Rose Design Studio",
+    "creative branding agency India",
+    "brand design studio",
+    "Trishi Jain",
+    "brand strategy team",
+  ],
 };
 
 export default function StudioPage() {

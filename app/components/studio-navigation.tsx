@@ -57,36 +57,6 @@ export function StudioTransitionProvider({
   }, []);
 
   useEffect(() => {
-    const el = curtain.current;
-    if (!el || window.matchMedia("(prefers-reduced-motion: reduce)").matches)
-      return;
-    try {
-      if (sessionStorage.getItem("tea-rose:intro")) return;
-    } catch {
-      /* The intro also works when session storage is unavailable. */
-    }
-    el.hidden = false;
-    animation.current = el.animate(
-      [{ transform: "translateY(0%)" }, { transform: "translateY(-101%)" }],
-      { ...curtainTiming, delay: 400, duration: 900 },
-    );
-    animation.current.finished
-      .then(() => {
-        el.hidden = true;
-        try {
-          sessionStorage.setItem("tea-rose:intro", "seen");
-        } catch {
-          /* Storage is optional. */
-        }
-      })
-      .catch(() => {});
-    return () => {
-      animation.current?.cancel();
-      el.hidden = true;
-    };
-  }, []);
-
-  useEffect(() => {
     if (previousPath.current === pathname) return;
     previousPath.current = pathname;
     if (!busy.current) return;
@@ -273,9 +243,14 @@ export function StudioNavigation() {
         </nav>
         <div className="st-nav-actions">
           <Magnetic>
-            <StudioLink className="st-button st-button-pink" href="/#contact">
+            <a
+              className="st-button st-button-pink"
+              href="https://cal.com/project-24-iyyo9f/spill-the-tea"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               Let’s talk
-            </StudioLink>
+            </a>
           </Magnetic>
           <Dialog.Root open={open} onOpenChange={setOpen}>
             <Dialog.Trigger

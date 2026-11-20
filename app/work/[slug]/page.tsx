@@ -10,7 +10,12 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params;
   const project = projects.find((item) => item.slug === slug);
-  return { title: project ? `${project.name} — Case Study | Tea Rose` : "Project not found | Tea Rose", description: project?.sections[0].paragraphs.join(" ") };
+  if (!project) return { title: "Project not found | Tea Rose" };
+  return {
+    title: `${project.name} — Case Study | Tea Rose`,
+    description: project.sections[0].paragraphs.join(" "),
+    keywords: [project.name, project.category, ...project.tags, "Tea Rose Design Studio case study"],
+  };
 }
 
 export default async function CaseStudy({ params }: { params: Promise<{ slug: string }> }) {
