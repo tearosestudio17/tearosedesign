@@ -301,11 +301,15 @@ body { overflow-x: clip; }
 .st-contact-main { padding-bottom: 25px; }
 .st-contact-title { font: 400 clamp(65px, 13vw, 205px)/1.1 var(--font-display); letter-spacing: -.065em; margin-top: 35px; }
 .st-contact-bottom { display: flex; justify-content: space-between; align-items: center; gap: 50px; padding: 40px 0 80px; }
-.st-contact-bottom > p { font-family: var(--font-display); max-width: 30ch; font-size: clamp(21px, 2.5vw, 38px); letter-spacing: -.025em; line-height: 1.55; }
+.st-contact-bottom p { font-family: var(--font-display); max-width: 30ch; font-size: clamp(21px, 2.5vw, 38px); letter-spacing: -.025em; line-height: 1.55; }
 .st-footer { border-top: 1px solid #fff0f533; padding-top: 30px; display: flex; justify-content: space-between; align-items: center; gap: 25px; }
+.st-footer-brand-group { display: flex; flex-direction: column; }
 .st-footer-brand { font-family: var(--font-display); font-size: 32px; font-weight: 400; letter-spacing: -.06em; line-height: 1; }
 .st-footer-brand span { display: block; font: 14px var(--font-mono); letter-spacing: .15em; margin-top: 10px; }
 .st-footer .st-text-link { font-size: 14px; border: none; }
+.st-footer-credit { display: block; margin-top: 14px; font: 12px/1.6 var(--font-mono); letter-spacing: .1em; text-transform: uppercase; color: #fff0f599; }
+.st-footer-credit a { color: var(--accent); transition: opacity .2s; }
+.st-footer-credit a:hover { opacity: .7; }
 .st-booking-popup { position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 101; width: min(550px, calc(100% - 32px)); max-height: 85dvh; overflow-y: auto; border: 1px solid #ff237e44; border-radius: 24px; padding: 45px; background: #21101c; color: #fff3f7; }
 .st-booking-close { position: absolute; top: 15px; right: 15px; padding: 10px; cursor: pointer; min-height: 44px; font-size: 16px; }
 .st-booking-popup > .st-label { padding-top: 25px; display: block; color: var(--accent); }

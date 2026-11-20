@@ -93,7 +93,7 @@ export function AnimatedHeading({
         {text.split(/\s+/).map((word, index) => (
           <Fragment key={index}>
             {index > 0 && " "}
-            <span className="-my-[0.18em] inline-block overflow-clip py-[0.18em] align-bottom">
+            <span className="-my-[0.34em] inline-block overflow-clip py-[0.34em] align-bottom">
               <motion.span className="inline-block motion-reduce:transform-none! motion-reduce:opacity-100!"
                 variants={{
                   hidden: { y: "105%", opacity: 0 },
