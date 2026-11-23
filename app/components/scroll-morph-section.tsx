@@ -99,18 +99,18 @@ export function ScrollMorphSection({
         </nav>
         {hasAbout && (
           <section ref={aboutRef} id={`${sectionId}-1`} aria-label="About Tea Rose" aria-hidden="true" inert
-            className="about-stage absolute inset-0 z-10 flex flex-col items-center overflow-y-auto pb-7 pl-6 pr-14 pt-24 opacity-0 sm:px-16 sm:pb-10 sm:pt-28 lg:pl-14 lg:pr-24 [&>.about-content]:my-auto [&>.about-content]:shrink-0">
+            className="absolute inset-0 z-10 flex flex-col items-center overflow-y-auto pt-24 pr-14 pb-7 pl-6 opacity-0 sm:px-16 sm:pt-28 sm:pb-10 lg:pr-24 lg:pl-14 max-[600px]:pt-[84px] max-[600px]:pb-4 [&>.about-content]:my-auto [&>.about-content]:shrink-0">
             {aboutSection}
           </section>
         )}
         <section ref={nextRef} id={`${sectionId}-${1 + panelOffset}`} aria-hidden="true" inert
-          className="st-story-process absolute inset-0 z-10 flex flex-col items-start overflow-y-auto px-6 pb-8 pt-28 opacity-0 sm:px-14">
+          className="absolute inset-0 z-10 flex flex-col items-start overflow-y-auto px-6 pt-28 pb-8 pr-[clamp(56px,7vw,110px)] opacity-0 sm:px-14 max-[760px]:pt-[84px] max-[760px]:pr-[52px] max-[760px]:pb-4">
           {nextSection}
         </section>
         {additionalSections?.map((content, index) => (
           <section key={index} id={`${sectionId}-${index + 2 + panelOffset}`} aria-hidden="true" inert
             ref={(node) => { panelRefs.current[index] = node; }}
-            className="st-story-process absolute inset-0 z-10 flex flex-col items-start overflow-y-auto px-6 pb-8 pt-28 opacity-0 sm:px-14">
+            className="absolute inset-0 z-10 flex flex-col items-start overflow-y-auto px-6 pt-28 pb-8 pr-[clamp(56px,7vw,110px)] opacity-0 sm:px-14 max-[760px]:pt-[84px] max-[760px]:pr-[52px] max-[760px]:pb-4">
             {content}
           </section>
         ))}
