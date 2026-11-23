@@ -46,7 +46,7 @@ export function SplitHeading({
   return (
     <AnimatedHeading
       as={as}
-      className={`st-split ${className}`}
+      className={`text-balance ${className}`}
       lines={lines}
     />
   );
@@ -86,7 +86,7 @@ export function ScrubText({
   });
   const words = text.split(" ");
   return (
-    <p ref={ref} className={`st-scrub ${className}`}>
+    <p ref={ref} className={className}>
       {words.map((word, i) => (
         <ScrubWord
           key={i}
@@ -112,7 +112,7 @@ export function Magnetic({
   const reduced = useReducedMotion();
   return (
     <motion.span
-      className={`st-magnetic ${className}`}
+      className={`inline-flex shrink-0 motion-reduce:transform-none! ${className}`}
       style={{ x, y }}
       onPointerMove={(event) => {
         if (reduced || event.pointerType !== "mouse") return;
@@ -148,7 +148,7 @@ export function ReadingProgress() {
   const { scrollYProgress } = useScroll();
   return (
     <motion.div
-      className="st-reading-progress"
+      className="fixed inset-x-0 top-0 z-[120] h-0.5 origin-left bg-[var(--accent)]"
       aria-hidden="true"
       style={{ scaleX: scrollYProgress }}
     />

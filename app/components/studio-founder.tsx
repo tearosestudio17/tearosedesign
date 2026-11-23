@@ -75,7 +75,7 @@ export function StudioFounder({
           </figcaption>
         </figure>
         <div className="min-w-0 max-[760px]:mx-auto max-[760px]:max-w-[530px]">
-          <span className="st-label mb-[19px] block text-[#98637c] max-[760px]:mb-3.5">
+          <span className="font-mono text-sm leading-[1.6] tracking-[.14em] uppercase mb-[19px] block text-[#98637c] max-[760px]:mb-3.5">
             A creative heart. A curious mind.
           </span>
           <div id="founder-title">
