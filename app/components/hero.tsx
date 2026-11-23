@@ -33,7 +33,7 @@ export default function Hero() {
         </div>
         <div className="pointer-events-none relative min-w-0 self-stretch max-lg:absolute max-lg:inset-y-0 max-lg:-right-[70px] max-lg:z-0 max-lg:w-[55%] max-lg:opacity-[.22] max-[600px]:top-[8%] max-[600px]:-right-[90px] max-[600px]:w-[300px] max-[600px]:opacity-[.16]" aria-hidden="true">
           <div className="absolute inset-x-[-10%] inset-y-[12%] bg-[radial-gradient(ellipse,#ff237e12,transparent_68%)]" />
-          <div className="hero-illustration absolute inset-[-5%_-6%_-6%_-12%] max-lg:inset-0">
+          <div className="absolute inset-[-5%_-6%_-6%_-12%] max-lg:inset-0 rotate-[-3deg] animate-[tea-float_9s_ease-in-out_infinite] motion-reduce:animate-none">
             <Image
               src={teaIllustration}
               alt=""
