@@ -83,7 +83,7 @@ export function AnimatedHeading({
   }, [waitForIntro]);
 
   return <Tag ref={ref}
-    className={`font-display font-normal leading-[1.06] tracking-[-0.035em] ${className}`}
+    className={`font-display font-normal leading-[1.35] tracking-[-0.035em] ${className}`}
     aria-label={lines.map((line) => line.text).join(" ")}
     initial="hidden" animate={reduced || (ready && visible) ? "visible" : "hidden"}
     variants={{ hidden: {}, visible: { transition: { staggerChildren: reduced ? 0 : 0.22 } } }}>
@@ -93,7 +93,7 @@ export function AnimatedHeading({
         {text.split(/\s+/).map((word, index) => (
           <Fragment key={index}>
             {index > 0 && " "}
-            <span className="-my-[0.34em] inline-block overflow-clip py-[0.34em] align-bottom">
+            <span className="-my-[0.65em] inline-block overflow-clip py-[0.65em] align-bottom">
               <motion.span className="inline-block motion-reduce:transform-none! motion-reduce:opacity-100!"
                 variants={{
                   hidden: { y: "105%", opacity: 0 },

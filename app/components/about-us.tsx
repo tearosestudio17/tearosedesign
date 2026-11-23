@@ -2,15 +2,15 @@ import { AnimatedHeading, AnimatedReveal } from "./animated-heading";
 
 export default function AboutUs() {
   return (
-    <div className="about-content mx-auto w-full max-w-[1320px] text-left">
+    <div className="about-content mx-auto w-full max-w-[1320px] text-left [@media(min-width:1024px)_and_(max-height:760px)]:[&>:first-child]:mb-5 [@media(min-width:1024px)_and_(max-height:760px)]:[&>:last-child]:mt-5">
       <div className="flex justify-between gap-5 text-muted-foreground [&>:first-child]:text-accent">
-        <p className="st-label whitespace-nowrap max-[600px]:text-xs max-[600px]:tracking-[.1em]">01 / The studio</p>
-        <p className="st-label whitespace-nowrap max-[600px]:text-xs max-[600px]:tracking-[.1em]">India & beyond</p>
+        <p className="font-mono text-sm leading-[1.6] tracking-[.14em] uppercase whitespace-nowrap max-[600px]:text-xs max-[600px]:tracking-[.1em]">01 / The studio</p>
+        <p className="font-mono text-sm leading-[1.6] tracking-[.14em] uppercase whitespace-nowrap max-[600px]:text-xs max-[600px]:tracking-[.1em]">India & beyond</p>
       </div>
       <div className="grid grid-cols-[1.1fr_1fr] items-center gap-[6%] py-[clamp(28px,5vh,56px)] max-lg:grid-cols-1 max-lg:gap-[30px] max-[600px]:gap-2 max-[600px]:py-3">
         <div className="min-w-0">
           <AnimatedHeading
-            className="text-[clamp(40px,5.2vw,74px)] max-lg:max-w-full max-lg:text-[clamp(36px,6vw,64px)] max-[600px]:text-[clamp(32px,9.4vw,44px)] max-[600px]:leading-[1.08]"
+            className="text-[clamp(40px,5.2vw,74px)] max-lg:max-w-full max-lg:text-[clamp(36px,6vw,64px)] max-[600px]:text-[clamp(32px,9.4vw,44px)] max-[600px]:leading-[1.08] [@media(min-width:1024px)_and_(max-height:760px)]:text-[clamp(40px,4.6vw,64px)]"
             lines={[
               { text: "A creative agency." },
               { text: "Brewed on" },
@@ -33,7 +33,7 @@ export default function AboutUs() {
       </div>
       <div className="flex justify-between gap-5 border-t border-t-[#fff3f71a] pt-5 text-sm text-muted-foreground max-[600px]:gap-3 max-[600px]:pt-3 max-[600px]:text-[13px] max-[600px]:[&>span]:hidden [@media(max-height:640px)]:max-[600px]:hidden">
         <p>One team. From first thought to launch day.</p>
-        <span className="st-label">Keep brewing</span>
+        <span className="font-mono text-sm leading-[1.6] tracking-[.14em] uppercase">Keep brewing</span>
       </div>
     </div>
   );
