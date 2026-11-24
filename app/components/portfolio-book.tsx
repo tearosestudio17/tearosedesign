@@ -7,10 +7,15 @@ import { ArrowLeft, ArrowRight, ArrowUpRight, MoveHorizontal } from "lucide-reac
 import { projects, type Project } from "@/lib/work-content";
 import { StudioLink } from "./studio-navigation";
 
-type Spread = { kind: "contents" | "opening" | "story" | "outcome" | "thanks"; project: number; start?: number };
+type Spread = { kind: "contents" | "opening" | "gallery" | "story" | "outcome" | "thanks"; project: number; start?: number };
 const spreads: Spread[] = [{ kind: "contents", project: -1 }];
 projects.forEach((project, index) => {
   spreads.push({ kind: "opening", project: index });
+  // The opening page's hero image uses the first photo; any remaining photos
+  // (up to 4, stacked 2-per-page) share a single extra spread so the book
+  // doesn't balloon, while still staying uncropped.
+  const extraImages = Math.max(0, (project.images?.length ?? 0) - 1);
+  if (extraImages > 0) spreads.push({ kind: "gallery", project: index, start: 1 });
   for (let start = 1; start < project.sections.length; start += 4) spreads.push({ kind: "story", project: index, start });
   spreads.push({ kind: "outcome", project: index });
 });
@@ -303,24 +308,57 @@ function Paper({ page, onJump }: { page: (typeof pages)[number]; onJump: (page: 
     spread.kind === "story"
       ? project.sections.slice(pairStart, pairStart + 2).map((section, i) => ({ ...section, number: pairStart + i + 1 }))
       : [];
-  const artPage = spread.kind === "opening" && !left;
+  // Balance extra photos evenly across both pages instead of stacking them
+  // all on one side and leaving the other blank.
+  const extras = spread.kind === "gallery" ? (project?.images?.slice(1) ?? []) : [];
+  const leftCount = Math.ceil(extras.length / 2);
+  const galleryImages = spread.kind === "gallery" ? (left ? extras.slice(0, leftCount) : extras.slice(leftCount)) : [];
+  const galleryStart = 1 + (left ? 0 : leftCount);
+  const heroImage = spread.kind === "opening" && !left ? project?.images?.[0] : undefined;
+  const artPage = (spread.kind === "opening" && !left) || spread.kind === "gallery";
   const resultPage = (spread.kind === "outcome" || spread.kind === "thanks") && !left;
 
   const base = `relative flex h-full w-full flex-col overflow-hidden px-[25px] pt-[22px] pb-[20px] sm:px-[33px] sm:pt-[25px] sm:pb-[22px]`;
   const bg = artPage ? { background: project.color, color: project.ink } : resultPage ? { background: "#3c1829", color: "#fae9db" } : spread.kind === "contents" && left ? { background: "#f4d6d3", color: "#712540" } : { background: CREAM, color: INK };
   const sideGradient = left ? "bg-[linear-gradient(90deg,#33201922,#fff0_7%,#ffffff12_90%,#33201918)] sm:bg-[linear-gradient(90deg,#ffffff18_70%,#9a81691a_93%,#33201930)] rounded-[3px]" : "bg-[linear-gradient(90deg,#33201922,#fff0_7%,#ffffff12_90%,#33201918)] sm:bg-[linear-gradient(90deg,#4b2f2430,#bfa68e0a_7%,#fff0_25%)] rounded-[3px]";
 
+  if (heroImage) {
+    return (
+      <div className="relative flex h-full w-full flex-col overflow-hidden" style={projectVars(project)}>
+        <Image
+          src={heroImage.src}
+          alt={`${project.name} — case study photography`}
+          fill
+          sizes="(max-width: 760px) 100vw, 50vw"
+          className="object-cover"
+          priority={false}
+        />
+        <div aria-hidden className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,#120910b3_0%,#12091026_22%,#12091026_72%,#120910bf_100%)]" />
+        <div aria-hidden className="pointer-events-none absolute inset-0 z-5 bg-[url('/paper-grain.png')] opacity-[0.08] mix-blend-overlay" />
+        <div className="relative z-10 flex shrink-0 items-center justify-between gap-[15px] px-[25px] pt-[22px] pb-[11px] font-mono text-[6px] tracking-[0.055em] text-[#f9ede4] uppercase sm:px-[33px] sm:pt-[25px] sm:text-[8px]">
+          <span>{pad(spread.project + 1)} / {project.name}</span>
+          <span className="text-[6px] whitespace-nowrap sm:text-[7px]">A brand story</span>
+        </div>
+        <div className="relative z-10 mt-auto flex shrink-0 items-center justify-between gap-[15px] px-[25px] pt-3 pb-[20px] text-[6px] text-[#f9ede4] sm:px-[33px] sm:pb-[22px] sm:text-[7px]">
+          <span className="font-serif text-[13px] text-[#f4c3cf] italic sm:text-[14px]">An identity with a point of view.</span>
+          <span className="text-[9px] sm:text-[10px]">{pad(number)}</span>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className={`${base} ${sideGradient}`} style={{ ...bg, ...(project ? projectVars(project) : {}) }}>
       <div aria-hidden className="pointer-events-none absolute inset-0 z-5 bg-[url('/paper-grain.png')] opacity-[0.13] mix-blend-multiply" />
       <div className={`flex shrink-0 items-center justify-between gap-[15px] pb-[11px] font-mono text-[6px] tracking-[0.055em] uppercase sm:text-[8px] ${resultPage ? "border-b border-[#fae9db44]" : artPage ? "border-b border-current" : "border-b border-[#301b2633]"}`}>
         <span>{project ? `${pad(spread.project + 1)} / ${project.name}` : "Tea Rose Design Studio"}</span>
-        <span className="text-[6px] whitespace-nowrap sm:text-[7px]">{spread.kind === "contents" ? "The collection" : spread.kind === "opening" ? "A brand story" : spread.kind === "story" ? "The thinking" : spread.kind === "thanks" ? "The closing note" : "The details"}</span>
+        <span className="text-[6px] whitespace-nowrap sm:text-[7px]">{spread.kind === "contents" ? "The collection" : spread.kind === "opening" ? "A brand story" : spread.kind === "gallery" ? "The visual world" : spread.kind === "story" ? "The thinking" : spread.kind === "thanks" ? "The closing note" : "The details"}</span>
       </div>
 
       <div className={`relative min-h-0 flex-1 overflow-x-hidden overflow-y-auto py-5 [scrollbar-color:#a99485_transparent] [scrollbar-width:thin] [touch-action:pan-y] ${artPage ? "overflow-hidden pt-[26px]" : ""}`}>
         {spread.kind === "contents" && (left ? <TitleContent onJump={onJump} /> : <ContentsContent onJump={onJump} />)}
         {spread.kind === "opening" && (left ? <OpeningContent project={project} /> : <VisualContent project={project} />)}
+        {spread.kind === "gallery" && <GalleryContent project={project} images={galleryImages} start={galleryStart} />}
         {spread.kind === "story" && (items.length > 0 ? <StoryContent project={project} items={items} /> : <Interlude project={project} />)}
         {spread.kind === "outcome" && (left ? <ScopeContent project={project} /> : <ResultContent project={project} index={spread.project} onJump={onJump} />)}
         {spread.kind === "thanks" && (left ? <ThanksContent /> : <ClosingContent onJump={onJump} />)}
@@ -397,7 +435,6 @@ function OpeningContent({ project }: { project: Project }) {
 }
 
 function VisualContent({ project }: { project: Project }) {
-  const [hero, ...thumbs] = project.images ?? [];
   return (
     <div className="flex h-full flex-col">
       <div className="flex items-center justify-between gap-[10px] text-[6px] tracking-[0.08em] uppercase">
@@ -406,33 +443,51 @@ function VisualContent({ project }: { project: Project }) {
       </div>
 
       <div className="relative mt-[28px] flex min-h-0 flex-1 items-center justify-center pt-1 sm:mt-[34px]">
-        {hero ? (
-          <div className="relative h-full max-h-[300px] w-[78%] max-w-[380px] shrink-0 rounded-[2px] border border-black/5 bg-white p-2 shadow-[10px_18px_26px_rgba(0,0,0,.22)] [transform:rotate(-2deg)] sm:max-h-[420px]">
-            <Image src={hero.src} alt={`${project.name} — case study photography`} fill sizes="(max-width: 760px) 80vw, 36vw" className="rounded-[1px] object-cover object-[center_12%]" priority={false} />
-          </div>
-        ) : project.logo ? (
+        {project.logo ? (
           <div className="flex h-full w-full items-center justify-center rounded-md" style={{ background: project.color }}><Image src={project.logo} alt={`${project.name} identity`} width={320} height={200} className="h-auto w-3/5 object-contain" /></div>
         ) : (
           <div className="flex h-full w-full items-center justify-center rounded-md p-8 text-center font-sans text-[clamp(30px,5vw,60px)] leading-[0.95] font-extrabold tracking-[-0.08em]" style={{ background: project.color }}>{project.name}</div>
         )}
       </div>
 
-      {thumbs.length > 0 && (
-        <div className="relative mt-5 flex h-[130px] shrink-0 items-center justify-center gap-4 sm:mt-6 sm:h-[175px] sm:gap-6">
-          {thumbs.slice(0, 2).map((img, i) => (
-            <div
-              key={img.src}
-              className={`relative h-full w-[38%] max-w-[190px] rounded-[2px] border border-black/5 bg-white p-[6px] shadow-[4px_10px_16px_rgba(0,0,0,.18)] ${
-                i === 0 ? "-rotate-3" : "rotate-2"
-              }`}
-            >
-              <Image src={img.src} alt={`${project.name} — detail`} fill sizes="(max-width: 760px) 40vw, 16vw" className="rounded-[1px] object-cover object-[center_22%]" />
-            </div>
-          ))}
-        </div>
-      )}
-
       <p className="mt-5 text-center font-serif text-[13px] text-[#a24e64] italic sm:text-[14px]">An identity with a point of view.</p>
+    </div>
+  );
+}
+
+function GalleryContent({ project, images, start }: { project: Project; images: { src: string; width: number; height: number }[]; start: number }) {
+  if (images.length === 0) {
+    return (
+      <div className="flex h-full flex-col items-center justify-center text-center">
+        <span aria-hidden className="text-[80px] leading-[0.9] tracking-[-0.07em] opacity-60 sm:text-[clamp(60px,5.2vw,92px)]">{pad(start + 1)}</span>
+        <p className="mt-[18px] max-w-[22ch] font-serif text-[21px] leading-[1.2] italic sm:text-[24px]">{project.headline}</p>
+      </div>
+    );
+  }
+  const stacked = images.length > 1;
+  return (
+    <div className="flex h-full min-h-0 flex-col items-center justify-center gap-4">
+      {images.map((image) => (
+        <div
+          key={image.src}
+          className="flex min-h-0 shrink rounded-[2px] border border-black/5 bg-white p-2 shadow-[10px_18px_26px_rgba(0,0,0,.22)]"
+        >
+          <Image
+            src={image.src}
+            width={image.width}
+            height={image.height}
+            alt={`${project.name} — case study photography`}
+            sizes="(max-width: 760px) 80vw, 36vw"
+            className={`block h-auto w-auto max-w-[76vw] rounded-[1px] object-contain sm:max-w-[360px] ${
+              stacked ? "max-h-[min(32svh,260px)]" : "max-h-[min(60svh,440px)]"
+            }`}
+          />
+        </div>
+      ))}
+      <p className="mt-1 text-center font-mono text-[7px] tracking-[0.1em] uppercase opacity-70">
+        {pad(start + 1)}
+        {images.length > 1 ? `–${pad(start + images.length)}` : ""} / {project.name}
+      </p>
     </div>
   );
 }

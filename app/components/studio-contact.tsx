@@ -22,7 +22,9 @@ export function StudioContact() {
   return (
     <section className="bg-[#120910] text-[#fff0f5]" id="contact">
       <div className="relative py-[clamp(70px,10vw,150px)] px-[max(clamp(24px,5vw,80px),calc((100%-1680px)/2))] pb-[25px]">
-        <span className="font-mono text-sm leading-[1.6] tracking-[.14em] uppercase">Good conversations. Great brands.</span>
+        <span className="font-mono text-sm leading-[1.6] tracking-[.14em] uppercase">
+          Good conversations. Great brands.
+        </span>
         <SplitHeading
           text="Spill the Tea."
           accent="Tea."
@@ -52,12 +54,12 @@ export function StudioContact() {
           <span className="font-mono block mt-[14px] text-xs/[1.6] tracking-[.1em] text-[#fff0f599] uppercase">
             Design &amp; Developed by{" "}
             <a
-              href="https://www.launchleap.in/"
+              href="https://tearosedesign.com/"
               target="_blank"
               rel="noopener noreferrer"
               className="text-[var(--accent)] transition-opacity duration-200 hover:opacity-70"
             >
-              LaunchLeap
+              Tea Rose Design Studio
             </a>
           </span>
           <a
