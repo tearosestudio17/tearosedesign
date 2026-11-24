@@ -27,6 +27,11 @@ export const projects: Project[] = [
     ink: "#332c23",
     headline: "One brand. Every touchpoint.",
     logo: "/brands/luma.webp",
+    images: [
+      { src: "/work/Luma/1.png", width: 1121, height: 1403 },
+      { src: "/work/Luma/2.png", width: 852, height: 1507 },
+      { src: "/work/Luma/3.png", width: 853, height: 1513 },
+    ],
     sections: [
       {
         title: "Project Overview",
@@ -154,7 +159,7 @@ export const projects: Project[] = [
     headline: "Rooted in origin. Made to stand out.",
     logo: "/brands/ethiopia.webp",
     images: [
-      { src: "/work/Ethiopia/mock 01.PNG", width: 3500, height: 2300 },
+      { src: "/work/Ethiopia/mock 01.PNG", width: 4000, height: 2000 },
       { src: "/work/Ethiopia/coffee mockup 02.PNG", width: 4000, height: 3000 },
       {
         src: "/work/Ethiopia/Coffee Mockup 022.PNG",
@@ -367,7 +372,7 @@ export const projects: Project[] = [
       { src: "/work/The figure out/DSC00754.jpeg", width: 3000, height: 5000 },
       { src: "/work/The figure out/IMG_0042.JPEG", width: 5464, height: 8192 },
       {
-        src: "/work/The figure out/A9A6C342-554A-47A9-9533-CED6ECB0BC41.png",
+        src: "/work/The figure out/image.png",
         width: 1024,
         height: 1536,
       },
@@ -431,10 +436,14 @@ export const projects: Project[] = [
     headline: "A fresh face for Gen Z skincare.",
     logo: null,
     images: [
-      { src: "/work/Teens & beyond/DSC00049.jpeg", width: 4608, height: 3072 },
-      { src: "/work/Teens & beyond/MDF09271.jpeg", width: 4608, height: 3072 },
       {
         src: "/work/Teens & beyond/BDE951CC-02B4-492F-8F78-30A41E678034.png",
+        width: 4000,
+        height: 3000,
+      },
+      { src: "/work/Teens & beyond/MDF09271.jpeg", width: 4608, height: 3072 },
+      {
+        src: "/work/Teens & beyond/MDF00003.jpeg",
         width: 1024,
         height: 1536,
       },
@@ -486,6 +495,11 @@ export const projects: Project[] = [
     ink: "#5a3d12",
     headline: "A community built, one playdate at a time.",
     logo: null,
+    images: [
+      { src: "/work/Kinders den/1.png", width: 1091, height: 1442 },
+      { src: "/work/Kinders den/2.png", width: 1122, height: 1402 },
+      { src: "/work/Kinders den/3.jpeg", width: 1122, height: 1402 },
+    ],
     sections: [
       {
         title: "Project Overview",
