@@ -65,14 +65,6 @@ export function LogoWave() {
       className="group/sec relative overflow-clip [background:radial-gradient(ellipse_at_15%_5%,#ff83b522,transparent_55%),radial-gradient(ellipse_at_95%_95%,#ff941f14,transparent_50%),#742347] px-[clamp(24px,5vw,80px)] pt-16 pb-[90px] text-foreground [--section-padding:clamp(24px,5vw,80px)] [--wave-amplitude:64px] max-[600px]:pt-10 max-[600px]:pb-[60px] max-[600px]:[--wave-amplitude:38px]"
       aria-labelledby="brand-wave-title"
     >
-      <div className="flex justify-between gap-6 border-b border-b-[#fff3f72b] pb-[22px] [&>span:last-child]:text-right [&>span:last-child]:text-[#f2c4d5] max-[600px]:[&>span]:text-sm max-[600px]:[&>span:last-child]:max-w-[24ch]">
-        {/* <span className="font-mono text-sm leading-[1.6] tracking-[.14em] uppercase">02 / Brand worlds</span> */}
-        <span className="font-mono text-sm leading-[1.6] tracking-[.14em] uppercase text-center">
-          A selection from the studio /{" "}
-          {String(brandMarks.length).padStart(2, "0")} identities
-        </span>
-      </div>
-
       <div className="group/wave -mx-[var(--section-padding)] mt-9 mb-[60px] overflow-hidden py-[100px] max-[600px]:my-5 max-[600px]:mb-[30px] max-[600px]:py-[70px] motion-reduce:m-0 motion-reduce:my-12 motion-reduce:overflow-visible motion-reduce:p-0">
         <div className="flex w-max animate-[drift-right_72s_linear_infinite] group-not-data-[animating=true]/sec:[animation-play-state:paused] group-hover/wave:[animation-play-state:paused] motion-reduce:w-full motion-reduce:animate-none">
           {[false, true].map((duplicate) => (
@@ -108,10 +100,15 @@ export function LogoWave() {
             One team for strategy, design, marketing, branding and launches. No
             scattered vendors and no mixed messages.
           </p>
-          <StudioLink href="/services#branding" className="inline-flex min-h-[44px] items-center justify-between gap-[30px] border-b border-b-current py-[10px] text-base transition-opacity duration-200 hover:opacity-65">
+          <StudioLink
+            href="/services#branding"
+            className="inline-flex min-h-[44px] items-center justify-between gap-[30px] border-b border-b-current py-[10px] text-base transition-opacity duration-200 hover:opacity-65"
+          >
             Explore brand identity{" "}
           </StudioLink>
-          <span className="font-mono text-sm leading-[1.6] tracking-[.14em] uppercase">Good conversations. Great brands.</span>
+          <span className="font-mono text-sm leading-[1.6] tracking-[.14em] uppercase">
+            Good conversations. Great brands.
+          </span>
         </div>
       </div>
     </section>
